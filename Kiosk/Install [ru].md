@@ -1,6 +1,12 @@
 # Инструкция по установке ПО киоска Trovemat
 1. Установка Trovemat производится на операционной системе  Linux Mint Cinnamon x64.
-1. Установить Trovemat (ввести команду в терминале): 
+1. Установить Trovemat (ввести команду в терминале)  
+    
+    > !!! ВНИМАНИЕ  
+    > !!! ДАННАЯ КОМАНДА УСТАНАВЛИВАЕТ ДЕМОНСТРАЦИОННУЮ ВЕРСИЮ ПО КИОСКА  
+    > !!! ДЛЯ ПОЛУЧЕНИЯ ЛИЦЕНЗИОННОЙ ВЕРСИИ БЕЗ ОГРАНИЧЕНИЙ  
+    > !!! ОБРАЩАЙТЕСЬ НА sales@trovemat.com  
+  
     ``` SHELL 
     wget https://trovemat.com/trovemat_online_installer.sh -O /tmp/trovemat_online_installer.sh && sudo bash /tmp/trovemat_online_installer.sh $USER
     ```
