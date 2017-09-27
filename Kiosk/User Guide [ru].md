@@ -312,9 +312,16 @@ id="SUM" name="Сумма" value="1234567890"
 1. Платежи проходят через сервер [jetcrypto.com](https://jetcrypto.com/)
 1. На экране поверх приложения выводится надпись о том что это демо-версия.
 1. Приложение работает 10 минут, затем выключается (может быть увеличено по отдельному запросу на sales@trovemat.com).
+
+## Особенности работы приложения
 1. Номер телефона вводится в международном формате без символа "+" в начале. Например для России надо будет вводить "79261234567".
 1. На главной странице курсы берутся с сайта coinmarketcap.com
-1. Доступ к биржам осуществляется по токену, который надо прописывать в файле configs/operators.xml для соответствующего поля request_field
+1. Доступ к биржам осуществляется по токену, который надо прописывать в файле configs/operators.xml для соответствующего поля request_field:
+	1. BitLish: в шаге с id="0" и в шаге с id="7" у параметра "request_field" id="parameters.token" указывается токен для доступа к API.		
+	1. EXMO: 
+		- в шаге с id="0" у параметра "request_field" id="parameters.publicKey" указывает API key, в параметре "request_field" id="parameters.secretKey" указывается API secret.
+		- в шаге с id="7" у параметра "request_field" id="params" в параметре указывается API key в атрибуте "publicKey" JSON-объекта, API secret указывается в атрибуте "secretKey" JSON-объекта.
+	1. Poloniex: в шаге с id="7" у параметра "request_field" id="params" в параметре указывается POLONIEX API Key в атрибуте "publicKey" JSON-объекта, POLONIEX API Secret указывается в атрибуте "secretKey" JSON-объекта.
 
 ## Калибровка TOUCH-SCREEN
 
