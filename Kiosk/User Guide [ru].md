@@ -11,7 +11,7 @@
 	
 Пример:
 1. Если config.xml - правильный. После успешной проверки киоск его скопирует и сохранит под именем config_lastgood.xml.
-1. Если operators.xml - неправильный. После неуспешной проверки киоск его скопирует и сохранит под именем operators_lastbad.xml. Далее попробует загрузить operators_lastgood.xml, и если он окажется валидным: скопирует operators_lastgood.xml и сохранит под именем operators.xml
+1. Если [operators.xml](#Список-операторов-(operators.xml)) - неправильный. После неуспешной проверки киоск его скопирует и сохранит под именем operators_lastbad.xml. Далее попробует загрузить operators_lastgood.xml, и если он окажется валидным: скопирует operators_lastgood.xml и сохранит под именем [operators.xml](#Список-операторов-(operators.xml))
 
 ## Настройки киоска (config.xml)
 	
@@ -24,7 +24,7 @@
     </parameters>
         <gateways>
 		<trovemat_gateway type="trovemat" url="bapi.trovemat.com" username="demo" password="demo" check="true" pay="true" info="false" tasks="true" tasks_interval="300" />
-		<tox_messanger type="tox_text" check="false" pay="false" info="true" tasks="true" >
+		<tox_messenger type="tox_text" check="false" pay="false" info="true" tasks="true" >
 			<friends>
 				<friend_1 tox_id="" />
 			</friends>
@@ -32,7 +32,7 @@
 				<node_1 ip="144.76.60.215" port="33445" tox_id="04119E835DF3E78BACF0F84235B300546AF8B936F035185E2A8E9E0A67C8924F" />
 				<node_3 ip="128.199.199.197" port="33445" tox_id="B05C8869DBB4EDDD308F43C1A974A20A725A36EACCA123862FDE9945BF9D3E09" />
 			</nodes>
-		</tox_messanger>	
+		</tox_messenger>	
 	</gateways>
     <payments>
     	<gateway>trovemat</gateway>
@@ -142,39 +142,30 @@
 				 - tox_id - публичный ключ узла
     
 ## Меню (menu.xml)
+Меню состоит из групп и операторов, соответственно в конфиге разрешены только теги типа 'group' или 'operator'. Обязательным для всех элементов является аттрибут 'type'. Все операторы, присутствующие в меню, должны быть и в списке операторов [operators.xml](#Список-операторов-(operators.xml)). Оператор в файле [operators.xml](#Список-операторов-(operators.xml)) определяется по наименованию его тега.
 
-Пример конфига:
+Аттрибуты:
+* "type" - тип элемента. Возможные значения: "group" (группа операторов), "operator" (конкретный оператор).
+* "name" - Наименование группы. Значением атрибута является ключ фразы из файла с локализованными сообщениями interface/js/language.js для текущей выбранной локали
+
+Пример файла menu.xml для меню, которое состоит из 8-ми операторов на главной странице:
 ``` XML
 <?xml version="1.0" encoding="utf-8"?>
-<group id="0" name="Выберите оператора" image="" background="" columns="4" rows="2" scale="1" >
-	<operator id="1" name="MTS" image="mts.gif" />
-	<operator id="2" name="Beeline" image="beeline.gif" />
-	<group id="1" name="Megafon" image="megafon.gif" background="" columns="4" rows="2" scale="1" >
-		<operator id="3" name="Megafon Moscow" image="megafon.gif" />
-		<operator id="4" name="Megafon Sochi" image="megafon.gif" />
-	</group>
-	<operator id="5" name="Теле2" image="tele2.gif" visible="0" />
-</group>
+<menu type="group" name="choose_your_currency" >
+	<bitcoin type="operator" />
+	<ethereum type="operator" />
+	<dash type="operator" />
+	<ripple type="operator" />
+	<monero type="operator" />
+	<ethereum_classic type="operator" />
+	<litecoin type="operator" />
+	<nem type="operator" />
+</menu>
 ```
-Меню состоит из групп и операторов, соответственно в конфиге разрешены только теги 'group' и 'operator'. Обязательным для всех элементов является только аттрибут 'id', остальные могут отсутствовать. Все операторы, присутствующие в меню, должны быть и в списке операторов (operators.xml).
-
-Общие атрибуты для групп и операторов.
-* "id" - уникальный идентификатор. У групп значение "0" должно быть у главной группы, которая отображается первой.
-* "name" - имя группы для отображения.
-* "image" - изображение для данного элемента.
-* "visible" - отображение элемента меню. Значение по умолчанию - "1".
-
-Аттрибуты групп.	
-* "background" - фоновое изображение для таблицы элементов меню.
-* "columns" - количество столбцов на странице (таблица растягивается на все свободное пространство). Значение по умолчанию - "1".
-* "rows" - количество строк на странице. Значение по умолчанию - "1".
-* "scale":
-	- **"true"** (значение по умолчанию) - пропорционально размеру исходного изображения подгоняет его под размер получившийся ячейки.
-	- **"false"** - подгон изображения происходит только если оно выходит за пределы ячейки.
 
 ## Список операторов (operators.xml)
 
-* operator - оператор. Описывает схему проведения платежа.	
+* operator - оператор. Описывает схему проведения платежа. Название данного тега может быть любым, не противоречащим правилам наименования XML-тегов.
 	* step - шаг платежа.
 		* type - тип шага платежа. Обязательный параметр. Значение по умолчанию отсутствует. Допустимые значения:			
 			- **"data_entry"** - ввод данных платежа пользователем.
@@ -220,6 +211,73 @@
 		- receive_field - поле, которое присылает шлюз в ответе на запрос.
 			- id - имя параметра в ответе от сервера. Также в текущей клиентской сессии создаётся парамер с данным именем. Данное имя будет актуально только в течении текущей клиентской сессии. Данное имя может быть использовано в ссылке. Например, шлюз в ответе присылает поле с наименованием "buy". В шаге будет указано "...<receive_field id="buy" name="COURSE" />...". Далее в любом другом шаге, например в теге "request_field" можно использовать значение данного параметра путём указания строки "|buy|" - вместо этой строки будет подставлено конкретное значение, полученное от шлюза.
 			- name - наименование параметра внутри данного сценария. 
+
+Пример файла operators.xml, состоящего из двух операторов:
+``` XML
+<?xml version="1.0" encoding="utf-8"?>  
+<operators>
+	<bitcoin name="bitcoin" long="bitcoin" short="BTC" image="btc.png" >
+		<step_0 type="check_printer" />
+		<step_1 type="money_entry" />
+		<step_2 type="data_entry" >
+			<field_wallet name="Wallet" barcode_title="scan_your_wallet" title="enter_wallet_address" input_type="barcode" keyboard="text" regexp="^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$" validChars="[a-km-zA-HJ-NP-Z1-9]" control_buttons="SHIFT DEL" language="EN" />
+		</step_2>
+		<step_3 type="data_entry" >
+			<field_phone name="Phone number" title="enter_your_phone_number" keyboard="numbers" regexp="(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$" />
+		</step_3>
+		<step_4 type="check" path="/api/trovemat/Phone/verify" method="GET" >
+			<phoneNumber type="request_field" value="|field_phone|" />
+			<message type="request_field" value="Trovemat verification code: {0}" />
+			<verifyCode type="receive_field" name="VERIFYCODE_RECEIVED" />
+		</step_4>
+		<step_5 type="data_entry" >
+			<field_code name="Verification code" title="enter_verification_code" keyboard="numbers" print="0" regexp="[0-9]{4,}" />
+		</step_5>
+		<step_6 type="check" path="validate_verification_code" >
+			<VERIFYCODE_SRC type="request_field" value="|verifyCode|" />
+			<VERIFYCODE_DST type="request_field" value="|field_code|" />
+		</step_6>
+		<step_7 type="pay" path="/api/trovemat/Payment" method="POST">
+			<operatorId type="request_field" value="31" />
+			<params type="request_field" secure="true" value="{&quot;currency&quot;:&quot;BTC&quot;,&quot;address&quot;:&quot;|field_wallet|&quot;,&quot;secretKey&quot;:&quot;|_CRYPTO_poloniex_secret_key|&quot;,&quot;publicKey&quot;:&quot;|_COMMON_poloniex_public_key|&quot;,&quot;withdrawalAmount&quot;:&quot;|WITHDRAWAL_AMOUNT|&quot;,&quot;phoneNumber&quot;:&quot;|field_phone|&quot;}" />
+			<currencyId type="request_field" value="|_CURRENCY_CODE|" />
+			<amount type="request_field" value="|_ACCEPTED_MINOR_UNIT|" />
+		</step_7>
+		<step_8 type="print" check_name="poloniex.chq" failed_check_name="poloniex_failed.chq" />
+		<step_9 type="message" />
+	</bitcoin>
+	<ethereum name="ethereum" long="ethereum" short="ETH" image="ethereum.png" >
+		<step_0 type="check_printer" />
+		<step_1 type="money_entry" />
+		<step_2 type="data_entry" >
+			<field_wallet name="Wallet" barcode_title="scan_your_wallet" title="enter_wallet_address" input_type="barcode" keyboard="text"  regexp="^(0x)?([0-9a-f]{40})|([0-9A-F]{40})$" validChars="[a-fA-FxX0-9]" control_buttons="SHIFT DEL" language="EN" />
+		</step_2>
+		<step_3 type="data_entry" >
+		<field_phone name="Phone number" title="enter_your_phone_number" keyboard="numbers" regexp="(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$" />
+		</step_3>
+		<step_4 type="check" path="/api/trovemat/Phone/verify" method="GET" >
+			<phoneNumber type="request_field" value="|field_phone|" />
+			<message type="request_field" value="Trovemat verification code: {0}" />
+			<verifyCode type="receive_field" name="VERIFYCODE_RECEIVED" />
+		</step_4>
+		<step_5 type="data_entry" >
+			<field_code name="Verification code" title="enter_verification_code" keyboard="numbers" print="0" regexp="[0-9]{4,}" />
+		</step_5>
+		<step_6 type="check" path="validate_verification_code" >
+			<VERIFYCODE_SRC type="request_field" value="|verifyCode|" />
+			<VERIFYCODE_DST type="request_field" value="|field_code|" />
+		</step_6>
+		<step_7 type="pay" path="/api/trovemat/Payment" method="POST">
+			<operatorId type="request_field" value="31" />
+			<params type="request_field" secure="true" value="{&quot;currency&quot;:&quot;ETH&quot;,&quot;address&quot;:&quot;|field_wallet|&quot;,&quot;secretKey&quot;:&quot;|_CRYPTO_poloniex_secret_key|&quot;,&quot;publicKey&quot;:&quot;|_COMMON_poloniex_public_key|&quot;,&quot;withdrawalAmount&quot;:&quot;|WITHDRAWAL_AMOUNT|&quot;,&quot;phoneNumber&quot;:&quot;|field_phone|&quot;}" />
+			<currencyId type="request_field" value="|_CURRENCY_CODE|" />
+			<amount type="request_field" value="|_ACCEPTED_MINOR_UNIT|" />
+		</step_7>
+		<step_8 type="print" check_name="poloniex.chq" failed_check_name="poloniex_failed.chq" />
+		<step_9 type="message" />
+	</ethereum>
+</operators>
+```
 
 ## Шаблоны чеков (*.chq)
 
