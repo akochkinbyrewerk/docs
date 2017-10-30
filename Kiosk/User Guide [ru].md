@@ -21,6 +21,7 @@
     <parameters>
         <point_id>1</point_id>
         <extended_logging>false</extended_logging>
+	<point_name>Trovemat kiosk #1</point_name>
     </parameters>
         <gateways>
 		<trovemat_gateway type="trovemat" url="bapi.trovemat.com" username="demo" password="demo" check="true" pay="true" info="false" tasks="true" tasks_interval="300" />
@@ -69,6 +70,7 @@
 		- **"false"** (значение по умолчанию) - отключено.
 		- **"true"** - включено.
     * point_id - номер точки. Значение по умолчанию - 0.
+    * point_name - наименование точки для отображения в мессенджере в качестве имени контакта. Если данный атрибут не указан - наименование контакта будет "Trovemat kiosk #<ЗНАЧЕНИЕ ИЗ АТРИБУТА point_id>".
 * payments - параметры платежей по умолчанию. Могут быть переопределены для каждого оператора на шаге "money_entry" в operators.xml. Описание параметров в разделе "Операторы".
     * gateway - значение по умолчанию - "".
     * currency - значение по умолчанию - "USD".
