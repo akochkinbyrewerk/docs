@@ -53,78 +53,88 @@
 Ниже будут приведены основные команды для первоначальной настройки терминала (в данном документе приведены тестовые данные для настроек). Для более детального понимания процесса настроек необходимо использовать документ ["Инструкция по использованию ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bru%5D.md)
 Кавычки, которые можно использовать в командах - все виды кавычек, привычные как при работе с мобильными телефонами, так и при работе с Desktop-операционными системами (включая апострофы).
 
-    > !!! ВНИМАНИЕ  
-    > !!! После завершения всех настроек необходимо перезапустить киоск командой: service restart
+    !!! ВНИМАНИЕ  
+    !!! После завершения всех настроек необходимо перезапустить киоск командой: service restart
 
 В указанных командах в угловых скобках указываются те данные, вместо которых необходимо подставлять конкретные значения.
 
 1. Изменить название точки:
-settings set "config.parameters.point_name" "<НАЗВАНИЕ КОНКРЕТНОГО ТЕРМИНАЛА>"
+
+		settings set "config.parameters.point_name" "<НАЗВАНИЕ КОНКРЕТНОГО ТЕРМИНАЛА>"
 1. Изменить идентификатор терминала:
-settings set "config.parameters.point_id" "<ЦЕЛОЕ ЧИСЛО - ИДЕНТИФИКАТОР ТЕРМИНАЛА>"
+
+		settings set "config.parameters.point_id" "<ЦЕЛОЕ ЧИСЛО - ИДЕНТИФИКАТОР ТЕРМИНАЛА>"
 1. Сохранить логин и пароль от учетной записи Jetcrypto Wallet:
     1. Логин:
-    settings set "config.gateways.jetcrypto_wallet->username" "<ЛОГИН ОТ КОШЕЛЬКА JetCrypto Wallet>"
+
+			settings set "config.gateways.jetcrypto_wallet->username" "<ЛОГИН ОТ КОШЕЛЬКА JetCrypto Wallet>"
     1. Пароль:
-    settings set -secure "crypto.jetcrypto_wallet_password" "<ПАРОЛЬ ОТ КОШЕЛЬКА JetCrypto Wallet>"
+
+			settings set -secure "crypto.jetcrypto_wallet_password" "<ПАРОЛЬ ОТ КОШЕЛЬКА JetCrypto Wallet>"
 1. Сохранить ключи от выбранной биржи (в качестве примера – биржа Poloniex):
     1. Публичный ключ:
-    settings set "config.payments.common_params.poloniex_public_key" "<ПУБЛИЧНЫЙ КЛЮЧ ОТ БИРЖИ Poloniex>"
+    
+			settings set "config.payments.common_params.poloniex_public_key" "<ПУБЛИЧНЫЙ КЛЮЧ ОТ БИРЖИ Poloniex>"
     1. Приватный ключ:
-    settings set -secure "crypto.poloniex_secret_key" "<ПРИВАТНЫЙ КЛЮЧ ОТ БИРЖИ Poloniex>"
+    
+			settings set -secure "crypto.poloniex_secret_key" "<ПРИВАТНЫЙ КЛЮЧ ОТ БИРЖИ Poloniex>"
 1. Установка ограничений на минимальную и максимальную суммы внесения наличных в рамках одного платежа (по умолчанию минимальная сумма внесения наличных 1, максимальная 15000) в текущей валюте:
     1. Минимальный лимит:
-    settings set "config.payments.limit_min" "<МИНИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
-    ``` SHELL 
-    Пример - установим минимальную сумму внесения 200 в текущей валюте: 
-    settings set "config.payments.limit_min" "200"
-    ```
+    
+			settings set "config.payments.limit_min" "<МИНИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
+		``` SHELL 
+		Пример - установим минимальную сумму внесения 200 в текущей валюте: 
+		settings set "config.payments.limit_min" "200"
+		```
     1. Максимальный лимит:
-    settings set "config.payments.limit_max" "<МАКСИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
-    1. Максимальный лимит внесенных денег на главной странице (по умолчанию 15000) в текущей валюте. Указывается отдельно для каждой фиатной валюты, поддерживаемой купюроприёмником:
-    settings set "config.interface.menu.limit_max-><КОД ФИАТНОЙ ВАЛЮТЫ ДЛЯ КОТОРОЙ УСТАНАВЛИВАЕТСЯ ОГРАНИЧЕНИЕ>" "<МАКСИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
-    ``` SHELL 
-    Пример - установим максимальный лимит 14999 для валюты "RUB": 
-    settings set "config.interface.menu.limit_max->RUB" "14999"
-    ```
-1. Настройка списка доступных для внесения купюр (по умолчанию валюта – доступны все купюры, поддерживаемые купюроприёмником).
-``` SHELL 
-settings set "config.peripherals.validator->enabled_currencies" "<СПИСОК РАЗРЕШЁННЫХ К ПРИЁМУ ВАЛЮТ ИЛИ КУПЮР>"
 
+			settings set "config.payments.limit_max" "<МАКСИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
+    1. Максимальный лимит внесенных денег на главной странице (по умолчанию 15000) в текущей валюте. Указывается отдельно для каждой фиатной валюты, поддерживаемой купюроприёмником:
+
+			settings set "config.interface.menu.limit_max-><КОД ФИАТНОЙ ВАЛЮТЫ ДЛЯ КОТОРОЙ УСТАНАВЛИВАЕТСЯ ОГРАНИЧЕНИЕ>" "<МАКСИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
+        ``` SHELL 
+        Пример - установим максимальный лимит 14999 для валюты "RUB": 
+        settings set "config.interface.menu.limit_max->RUB" "14999"
+        ```
+1. Настройка списка доступных для внесения купюр (по умолчанию валюта – доступны все купюры, поддерживаемые купюроприёмником):
+
+		settings set "config.peripherals.validator->enabled_currencies" "<СПИСОК РАЗРЕШЁННЫХ К ПРИЁМУ ВАЛЮТ ИЛИ КУПЮР>"
+``` SHELL 
 Пример: разрешить к приёму рублевые купюры номиналов 100, 500, 1000 и 5000:
 settings set "config.peripherals.validator->enabled_currencies" "RUB:100,RUB:500,RUB:1000,RUB:5000"
 ```
 1. Настройка комиссии:
     1. Задаем условие применение комиссии при внесении суммы от 0 в текущей валюте:
+    		
+			settings set "config.payments.fee.part->min" "<МИНИМАЛЬНАЯ СУММА ПРИНЯТЫХ НАЛИЧНЫХ, НАЧИНАЯ С КОТОРОЙ ПРИМЕНЯЕТСЯ ДАННОЕ ПРАВИЛО ДЛЯ РАСЧЁТА СУММЫ КОМИССИИ>"
     ``` SHELL 
-    settings set "config.payments.fee.part->min" "<МИНИМАЛЬНАЯ СУММА ПРИНЯТЫХ НАЛИЧНЫХ, НАЧИНАЯ С КОТОРОЙ 
-    ПРИМЕНЯЕТСЯ ДАННОЕ ПРАВИЛО ДЛЯ РАСЧЁТА СУММЫ КОМИССИИ>"
-    
     Пример: добавляем правило для применения комиссии начиная с внесённой суммы "0":
     settings set "config.payments.fee.part->min" "0"
     ```
     1. Задаем комиссю в % от внесённых наличных денежных средств:
-    settings set "config.payments.fee.part->percent" "<ЦЕЛОЕ ЧИСЛОВ - ПРОЦЕНТНАЯ СТАВКА КОМИССИИ>"
+    		
+			settings set "config.payments.fee.part->percent" "<ЦЕЛОЕ ЧИСЛОВ - ПРОЦЕНТНАЯ СТАВКА КОМИССИИ>"
     ``` SHELL 
     Пример: установим комиссию в размере 7% от суммы внесённых денежных средств:
     settings set "config.payments.fee.part->percent" "7"
     ```
     1. Задаем фиксированную составляющую комиссии в текущей валюте:
-    ``` SHELL 
-    settings set "config.payments.fee.part->fix" "<ЦЕЛОЕ ЧИСЛОВ - ФИКСИРОВАННАЯ СОСТАВЛЯЮЩАЯ КОМИССИИ>"
-    
+			
+			settings set "config.payments.fee.part->fix" "<ЦЕЛОЕ ЧИСЛОВ - ФИКСИРОВАННАЯ СОСТАВЛЯЮЩАЯ КОМИССИИ>"
+    ``` SHELL   
     Пример: установим фиксированную часть комиссии 50 в текущей валюте:
     settings set "config.payments.fee.part->fix" "<ЦЕЛОЕ ЧИСЛОВ - ФИКСИРОВАННАЯ СОСТАВЛЯЮЩАЯ КОМИССИИ>"
     ```
 1. Изменяем параметры терминала (название, адрес и т.д.):
     1. Имя дилера:
-    settings set "config.point_info.dealer_name->name" "<НАИМЕНОВАНИЕ КОМПАНИИ ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
+    
+			settings set "config.point_info.dealer_name->name" "<НАИМЕНОВАНИЕ КОМПАНИИ ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
     1. Адрес дилера:
     
-    settings set "config.point_info.dealer_address->name" "<ЮРИДИЧЕСКИЙ АДРЕС КОМПАНИИ ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
+    		settings set "config.point_info.dealer_address->name" "<ЮРИДИЧЕСКИЙ АДРЕС КОМПАНИИ ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
     1. Номер телефона дилера:
     
-    settings set "config.point_info.dealer_phone->name" "<НОМЕР ТЕЛЕФОНА ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
+    		settings set "config.point_info.dealer_phone->name" "<НОМЕР ТЕЛЕФОНА ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
     1. Адрес точки, где расположен данный терминал:
     
-    settings set "config.point_info.point_address->name" "<ФАКТИЧЕСКИЙ АДРЕС УСТАНОВКИ ТЕРМИНАЛА>"    
+    		settings set "config.point_info.point_address->name" "<ФАКТИЧЕСКИЙ АДРЕС УСТАНОВКИ ТЕРМИНАЛА>"    
