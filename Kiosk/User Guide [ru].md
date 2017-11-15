@@ -478,10 +478,12 @@ id="SUM" name="Сумма" value="1234567890"
 ### Poloniex
 
 API Key хранится в параметре "config.payments.common_params.poloniex_public_key"
+
 Secret хранится в параметре "crypto.poloniex_secret_key"
 
 ### Bitfinex
 
 API key хранится в параметре "config.payments.common_params.bitfinex_public_key"
+
 API key secret хранится в параметре "crypto.bitfinex_secret_key"
 
