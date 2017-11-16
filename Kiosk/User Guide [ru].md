@@ -214,8 +214,8 @@
 					От 50 и выше - взымать коммиссию в размере 1%.
 					``` XML
 					<fee>
-						<part min="0" percent="2" fix="2.01" />
-						<part min="50" percent="1" fix="0" />
+						<part_1 min="0" percent="2" fix="2.01" />
+						<part_2 min="50" percent="1" fix="0" />
 					</fee>
 					```
 			- **"check"** - запрос к шлюзу без платежа.
