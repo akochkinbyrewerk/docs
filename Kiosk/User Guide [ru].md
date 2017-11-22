@@ -25,14 +25,18 @@
 	<point_name>Trovemat kiosk #1</point_name>
     </parameters>
         <gateways>
-		<trovemat_gateway type="trovemat" url="bapi.trovemat.com" username="demo" password="trovemat_password" check="true" pay="true" tasks="3" tasks_interval="300" />
+		<jetcrypto_wallet type="trovemat" url="beta.jetcrypto.com" username="demo" password="crypto.jetcrypto_wallet_password" check="true" pay="true" tasks="3" tasks_interval="300" />
 		<tox_messenger type="tox_text" >
 			<friends>
-				<andrey tox_id="9948BAD2B447DFFC5C5296FA774F30E046A00CC2AEF541A239B429EAD0FAA6454703333072C1" message_queue_limit="1000" tasks="3" info_task="1" info_factor="true" info_state="true" info_full_state="true" info_bill="true" info_payment="true"/>
+				<users />
 			</friends>
 			<nodes>				
 				<node_1 ip="144.76.60.215" port="33445" tox_id="04119E835DF3E78BACF0F84235B300546AF8B936F035185E2A8E9E0A67C8924F" />
 				<node_3 ip="128.199.199.197" port="33445" tox_id="B05C8869DBB4EDDD308F43C1A974A20A725A36EACCA123862FDE9945BF9D3E09" />
+				<node_4 ip="23.226.230.47" port="33445" tox_id="A09162D68618E742FFBCA1C2C70385E6679604B2D80EA6E84AD0996A1AC8A074" />
+				<node_5 ip="2001:bc8:4400:2100::1c:50f" port="33445" tox_id="2C289F9F37C20D09DA83565588BF496FAB3764853FA38141817A72E3F18ACA0B" />
+				<node_6 ip="178.21.112.187" port="33445" tox_id="4B2C19E924972CB9B57732FB172F8A8604DE13EEDA2A6234E348983344B23057" />
+				<node_7 ip="163.172.136.118" port="33445" tox_id="2C289F9F37C20D09DA83565588BF496FAB3764853FA38141817A72E3F18ACA0B" />
 			</nodes>
 		</tox_messenger>	
 	</gateways>
@@ -40,7 +44,7 @@
     	<gateway>trovemat</gateway>
         <currency>USD</currency>
 	<common_params>
-		<poloniex_public_key>B05C8869DBB4EDDD308F43C1A974A20A725A36EACCA123862FDE9945</poloniex_public_key>
+		<poloniex_public_key>00000000000000000000000000000000000000000000000000000000</poloniex_public_key>
 	</common_params>
     </payments>
     <interface wait_init_devices="2" />
