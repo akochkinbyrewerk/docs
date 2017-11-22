@@ -20,11 +20,11 @@
 ``` XML
 <config>
     <parameters>
-        <point_id>1</point_id>
-        <extended_logging>false</extended_logging>
-	<point_name>Trovemat kiosk #1</point_name>
-    </parameters>
-        <gateways>
+		<point_id>1</point_id>
+		<extended_logging>false</extended_logging>
+		<point_name>Trovemat kiosk #1</point_name>
+	</parameters>
+	<gateways>
 		<jetcrypto_wallet type="trovemat" url="beta.jetcrypto.com" username="demo" password="crypto.jetcrypto_wallet_password" check="true" pay="true" tasks="3" tasks_interval="300" />
 		<tox_messenger type="tox_text" >
 			<friends>
@@ -41,13 +41,20 @@
 		</tox_messenger>	
 	</gateways>
     <payments>
-    	<gateway>trovemat</gateway>
-        <currency>USD</currency>
-	<common_params>
-		<poloniex_public_key>00000000000000000000000000000000000000000000000000000000</poloniex_public_key>
-	</common_params>
+    	<gateway>jetcrypto_wallet</gateway>
+		<currency>USD</currency>
+		<limit_min>10</limit_min>
+		<limit_max>3000</limit_max>
+		<common_params>
+			<poloniex_public_key>00000000000000000000000000000000000000000000000000000000</poloniex_public_key>
+		</common_params>
     </payments>
-    <interface wait_init_devices="2" />
+	<interface wait_init_devices="2" lang="EN" >
+		<menu vending="true" >
+			<limit_max USD="3000" />
+		</menu>
+		<inactivity_timer data_entry="120" message="120" money_entry="120" />
+	</interface>
     <terminal>
         <init>
             <app>./startup.sh</app>
@@ -61,7 +68,10 @@
         <validator model="" port="" baudrate="9600" extended_logging="config.parameters.extended_logging" show_errors="0" />
     </peripherals>
     <point_info>
-        <dealer_name name="Дилер" value="Рога и Копыта" />
+		<dealer_name name="" value="JetCrypto" />
+		<dealer_address name="" value="Dzērbenes iela 14, Vidzemes priekšpilsēta, Rīga, LV-1006" />
+		<dealer_phone name="" value="+371 66 555 098" />
+		<point_address name="" value="Dzērbenes iela 14, Vidzemes priekšpilsēta, Rīga, LV-1006" />
     </point_info>
 </config>
 ```
@@ -80,7 +90,7 @@
     * point_id - номер точки. Значение по умолчанию - 0.
     * point_name - наименование точки для отображения в мессенджере в качестве имени контакта. Если данный атрибут не указан - наименование контакта будет "Trovemat kiosk #<ЗНАЧЕНИЕ ИЗ АТРИБУТА point_id>".
 * payments - параметры платежей по умолчанию. Могут быть переопределены для каждого оператора на шаге "money_entry" в operators.xml. Описание параметров в разделе "Операторы".
-    * gateway - значение по умолчанию - "".
+    * gateway - значение по умолчанию - "" - наименование шлюза
     * currency - значение по умолчанию - "USD".
     * limit_min - значение по умолчанию - "0".
     * limit_max - значение по умолчанию - "1000000".
@@ -94,6 +104,14 @@
 		- **"0"** (значение по умолчанию) - не дожидаясь инициализации устройств.
 		- **"1"** - ждать завершение инициализации устройств с параметром "show_errors" не равным "0".
 		- **"2"** - ждать завершение инициализации всех устройств.
+	* lang - язык интерфейса главной страницы по умолчанию
+	* menu - тег, описывающий поведение главной страницы:
+		* vending - значение по умолчанию "true" - флаг, разрешающий внесение наличных денежных средств на главном экране без выбора конкретной крипто-валюты для покупки
+		* limit_max - максимальная сумма для внесения на главном экране в указанной валюте.
+	* inactivity_timer - таймаут неактивности пользователя в секундах на различных экранах:
+		* data_entry - на экране ввода (сканирования) номера кошелька
+		* message - на экране сообщения клиенту
+		* money_entry - на экране внесения наличных
 * terminal
     * init - тег, описывающий параметры для запуска приложения при старте киоска
         * app - строка - приложение, которое киоск запустит отдельным процессом при старте.
@@ -131,12 +149,12 @@
             - **"17"** - CP866 (Cyrillic)
             - **"19"** - CP858 (for Euro symbol 213)
 		
-* point_info - В данном разделе можно задать неограниченное количество системных полей с любыми именами. Эти поля можно использовать при печати чеков и запросах к шлюзам. "Id" поля задается вида _INFO_*, где * - имя поля заглавными буквами. Имя и значение могут быть заданы атрибутами "name" и "value". Пример: <dealer_name name="Диллер" value="Рога и Копыта" /> будет преобразовано в системное поле с id="_INFO_DEALER_NAME", name="Дилер" и value="Рога и Копыта".
+* point_info - В данном разделе можно задать неограниченное количество системных полей с любыми именами. Эти поля можно использовать при печати чеков и запросах к шлюзам. "Id" поля задается вида _INFO_*, где * - имя поля заглавными буквами. Имя и значение могут быть заданы атрибутами "name" и "value". Пример: <dealer_name name="Дилер" value="Рога и Копыта" /> будет преобразовано в системное поле с id="_INFO_DEALER_NAME", name="Дилер" и value="Рога и Копыта".
 
 * gateways В данном разделе можно задать неограниченное количество тегов, описывающих подключение к различным серверам.
 Название вложенного тега - это название шлюза, которое можно использовать в шагах (см. тег "step" атрибут "gateway"). Для каждого шлюза указыватся следующие аттрибуты:
 	- type - наименование типа шлюза. Доступные типы: 
-		- **"trovemat"** - шлюз для доступа к api.trovemat.com.
+		- **"trovemat"** - шлюз для доступа к api.jetcrypto.com.
 		Для данного шлюза указываются следующие дополнительные аттрибуты:
 			- url - адрес сервера		
 			- username - учётная запись для доступа
