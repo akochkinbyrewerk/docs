@@ -50,7 +50,6 @@
 			sudo ./trovemat_online_installer_ubuntu.sh $USER СЮДА_НЕОБХОДИМО_ВВЕСТИ_URL_ПОЛУЧЕННЫЙ_ПОСЛЕ_ОПЛАТЫ_СЧЁТА_ЗА_ПО_TROVEMAT
 
 			Пример команды для установки лицензионной версии с URL https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz:
-
 			wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
 			chmod +x trovemat_online_installer_ubuntu.sh
 			sudo ./trovemat_online_installer_ubuntu.sh $USER https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz
