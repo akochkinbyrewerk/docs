@@ -48,11 +48,10 @@
         wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
         chmod +x trovemat_online_installer_ubuntu.sh
         sudo ./trovemat_online_installer_ubuntu.sh $USER СЮДА_НЕОБХОДИМО_ВВЕСТИ_URL_ПОЛУЧЕННЫЙ_ПОСЛЕ_ОПЛАТЫ_СЧЁТА_ЗА_ПО_TROVEMAT
-        ```
-    
-        Пример команды для установки лицензионной версии:
-        ``` SHELL 
-        wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
+        
+	Пример команды для установки лицензионной версии с URL https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz:
+        
+	wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
         chmod +x trovemat_online_installer_ubuntu.sh
         sudo ./trovemat_online_installer_ubuntu.sh $USER https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz
         ```
@@ -112,7 +111,7 @@
     1. Максимальный лимит:
 
 			settings set "config.payments.limit_max" "<МАКСИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
-    1. Максимальный лимит внесенных денег на главной странице (по умолчанию 15000) в текущей валюте. Указывается отдельно для каждой фиатной валюты, поддерживаемой купюроприёмником:
+    1. Максимальный лимит внесённых наличных денежных средств на главной странице (по умолчанию 15000) в текущей валюте. Указывается отдельно для каждой фиатной валюты, поддерживаемой купюроприёмником:
 
 			settings set "config.interface.menu.limit_max-><КОД ФИАТНОЙ ВАЛЮТЫ ДЛЯ КОТОРОЙ УСТАНАВЛИВАЕТСЯ ОГРАНИЧЕНИЕ>" "<МАКСИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
 		
