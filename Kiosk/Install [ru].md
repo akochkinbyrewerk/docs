@@ -152,7 +152,13 @@
     		settings set "config.point_info.dealer_phone->name" "<НОМЕР ТЕЛЕФОНА ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
     1. Адрес точки, где расположен данный терминал:
     
-    		settings set "config.point_info.point_address->name" "<ФАКТИЧЕСКИЙ АДРЕС УСТАНОВКИ ТЕРМИНАЛА>"    
+    		settings set "config.point_info.point_address->name" "<ФАКТИЧЕСКИЙ АДРЕС УСТАНОВКИ ТЕРМИНАЛА>"  
+1. Изменяем код страны по-умолчанию при вводе номера телефона:
+
+		settings set "config.interface->default_phone_code" "<КОД СТРАНЫ ПО СТАНДАРТУ ISO 3166-1>" 
+		
+		Пример: установим по-умолчанию код страны +7 (Россия):
+		settings set "config.interface->default_phone_code" "RU"
 1.  Перезапуск киоска для применения всех установленных настроек: 
 		
 		service restart
