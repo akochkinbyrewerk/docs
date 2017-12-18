@@ -509,19 +509,19 @@ id="SUM" name="Сумма" value="1234567890"
 
 ## Настройка взаимодействия с биржами
 
-### Poloniex
+### [Poloniex](https://poloniex.com)
 
 API Key хранится в параметре "config.payments.common_params.poloniex_public_key"
 
 Secret хранится в параметре "crypto.poloniex_secret_key"
 
-### Bitfinex
+### [Bitfinex](https://www.bitfinex.com/)
 
 API key хранится в параметре "config.payments.common_params.bitfinex_public_key"
 
 API key secret хранится в параметре "crypto.bitfinex_secret_key"
 
-### Bittrex
+### [Bittrex](https://bittrex.com)
 
 API key хранится в параметре "config.payments.common_params.bittrex_public_key"
 
