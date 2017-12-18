@@ -521,3 +521,9 @@ API key хранится в параметре "config.payments.common_params.bi
 
 API key secret хранится в параметре "crypto.bitfinex_secret_key"
 
+### Bittrex
+
+API key хранится в параметре "config.payments.common_params.bittrex_public_key"
+
+API key secret хранится в параметре "crypto.bittrex_secret_key"
+
