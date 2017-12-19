@@ -527,3 +527,9 @@ API key хранится в параметре "config.payments.common_params.bi
 
 API key secret хранится в параметре "crypto.bittrex_secret_key"
 
+### [EXMO](https://exmo.com)
+
+Public key хранится в параметре "config.payments.common_params.exmo_public_key"
+
+Secret key хранится в параметре "crypto.exmo_secret_key"
+
