@@ -16,7 +16,7 @@
 Инструкция по установке демо-версии для тестирования: ["Инструкция по установке ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/docs/Kiosk/Install%20[ru].md)
     
 ## Как проходит процесс приобретения криптовалюты? Опишите пожалуйста подробнее или дайте схему-процесс.
-!["Схема Trovemat flow of funds"](https://github.com/trovemat/docs/blob/master/docs/Kiosk/Trovemat%20flow%20of%20funds.png)
+!["Схема Trovemat flow of funds"](https://github.com/trovemat/docs/blob/master/Kiosk/Trovemat%20flow%20of%20funds.png)
 
 Процесс приобретения следующий: 
 1. Клиент сканирует адрес кошелька получателя, либо вводит его вручную, либо создаёт новый paper-wallet
