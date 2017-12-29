@@ -149,16 +149,16 @@
 1. Изменяем параметры терминала (название, адрес и т.д.):
     1. Имя дилера:
     
-			settings set "config.point_info.dealer_name->name" "<НАИМЕНОВАНИЕ КОМПАНИИ ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
+			settings set "config.point_info.dealer_name->value" "<НАИМЕНОВАНИЕ КОМПАНИИ ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
     1. Адрес дилера:
     
-    		settings set "config.point_info.dealer_address->name" "<ЮРИДИЧЕСКИЙ АДРЕС КОМПАНИИ ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
+    		settings set "config.point_info.dealer_address->value" "<ЮРИДИЧЕСКИЙ АДРЕС КОМПАНИИ ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
     1. Номер телефона дилера:
     
-    		settings set "config.point_info.dealer_phone->name" "<НОМЕР ТЕЛЕФОНА ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
+    		settings set "config.point_info.dealer_phone->value" "<НОМЕР ТЕЛЕФОНА ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
     1. Адрес точки, где расположен данный терминал:
     
-    		settings set "config.point_info.point_address->name" "<ФАКТИЧЕСКИЙ АДРЕС УСТАНОВКИ ТЕРМИНАЛА>"  
+    		settings set "config.point_info.point_address->value" "<ФАКТИЧЕСКИЙ АДРЕС УСТАНОВКИ ТЕРМИНАЛА>"  
 1. Изменяем код страны по-умолчанию при вводе номера телефона:
 
 		settings set "config.interface->default_phone_code" "<КОД СТРАНЫ ПО СТАНДАРТУ ISO 3166-1>" 
