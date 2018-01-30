@@ -8,7 +8,7 @@
 - Определение адреса кошелька покупателя:
 
   - сканировать qr-код адреса существующего кошелька
-  !["Сканирование кошелька"](https://github.com/trovemat/docs/blob/master/Kiosk/de/img/3.png)
+!["Сканирование кошелька"](https://github.com/trovemat/docs/blob/master/Kiosk/de/img/3.png)
   - создать новый paper-wallet (при возможности) на терминале
   - ввести адрес кошелька вручную
   
