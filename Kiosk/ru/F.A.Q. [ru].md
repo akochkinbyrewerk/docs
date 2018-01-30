@@ -30,7 +30,7 @@
 
 ## Как в целом устроен бизнес по продаже крипто-валют через киоск? Можете описать движение средств в этом процессе?
 
-!["Схема Trovemat flow of funds"](https://github.com/trovemat/docs/blob/master/Kiosk/Trovemat%20flow%20of%20funds.png)
+!["Схема Trovemat flow of funds"](https://github.com/trovemat/docs/blob/master/Kiosk/ru/img/Trovemat%20flow%20of%20funds.png)
 
 1. Владелец Trovemat пополняет свой счёт на любой из бирж, которые поддерживаются ПО Trovemat (фиатной или крипто-валютой - неважно)
 1. В личном кабинете биржи необходимо сгенерировать ключи для Trovemat, чтобы была возможность выполнять операции по переводу крипто-валюты
