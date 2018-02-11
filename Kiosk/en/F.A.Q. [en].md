@@ -1,19 +1,20 @@
-# Часто задаваемые вопросы
-## Как работает данный аппарат?
+# Frequently Asked Questions
+## How does Trovemat Kiosk works?
        
-Процесс работы:
-- Внесение наличных
-- Определение адреса кошелька покупателя:
+Trovemat software steps:
+- Accept cash
+- Determine wallet address, where to transfer cryptocurrency:
     
-    - сканировать адрес существующего кошелька 
-    - создать новый paper-wallet (при возможности) на терминале
-- Распечатка чека клиенту (включая paper-wallet, если он был создан)
+    - Scan existing wallet address from QR-code (mobile phone, paper wallet, etc)
+    - Enter existing wallet address using on-screen keyboard
+    - Create new paper-wallet (if available) directly on kiosk, if the user doesn't have any wallet yet
+- Print receipt to client (including paper-wallet, if it was created)
 
-Ссылка на видео, которое показывает Trovemat в действии: https://youtu.be/6f3cR620obs
+Watch video, showing Trovemat software example: https://youtu.be/6f3cR620obs
 
-Техническую информацию можно посмотреть на нашем сайте: https://trovemat.com
+Technical information can be found at: https://trovemat.com
 
-Инструкция по установке демо-версии для тестирования: ["Инструкция по установке ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/docs/Kiosk/Install%20[ru].md)
+Install guide can be found here: ["Install Trovemat software guide"](https://github.com/trovemat/docs/blob/master/docs/Kiosk/en/Install%20[en].md)
     
 ## Как проходит процесс приобретения криптовалюты? Опишите пожалуйста подробнее или дайте схему-процесс.
 
