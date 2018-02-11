@@ -1,39 +1,38 @@
-# Инструкция по установке ПО киоска Trovemat
-Возможна установка следующих вариантов ПО киоска:
-1. [Linux Mint Cinnamon x64](https://linuxmint.com/edition.php?id=237) - версия для тестирования и демонстрации, содержит рабочий стол и легко управляется пользователями с минимальным опытом (или вообще без опыта) работы с операционной системой Linux. Рекомендуется использовать данный вариант, если требуется ознакомительная установка ПО Trovemat.
-1. [Ubuntu 16.04 Server x64](http://releases.ubuntu.com/16.04/ubuntu-16.04.3-server-amd64.iso) - версия для использования в промышленной эксплуатации. Содержит все настройки, необходимые для защищённой работы ПО Trovemat.
+# Trovemat software install guide
+There are 2 possible options for running Trovemat software:
+1. [Linux Mint Cinnamon x64](https://linuxmint.com/edition.php?id=237) - version for demo purpose only, can be installed with the desktop manager and require minimal experience and knowledge of the Linux OS (or no experience at all). Recommended for first-time users, not familiar with Linux and/or Trovemat software.
+1. [Ubuntu 16.04 Server x64](http://releases.ubuntu.com/16.04/ubuntu-16.04.3-server-amd64.iso) - version for using Trovemat software in the real world. Contains all security settings, required for secure running Trovemat software.
 
-## Инструкция по установке ПО киоска Trovemat на ОС Linux Mint Cinnamon x64
-1. Установка Trovemat производится на операционной системе Linux Mint Cinnamon x64.
-1. Установить Trovemat (ввести команду в терминале)  
+## Installing Trovemat software with Linux Mint Cinnamon x64
+1. Install Linux Mint Cinnamon x64.
+1. Install Trovemat software (by running following command in the OS command shell)  
     
-    > !!! ВНИМАНИЕ  
-    > !!! ДАННАЯ КОМАНДА УСТАНАВЛИВАЕТ ДЕМОНСТРАЦИОННУЮ ВЕРСИЮ ПО КИОСКА  
-    > !!! ДЛЯ ПОЛУЧЕНИЯ ЛИЦЕНЗИОННОЙ ВЕРСИИ БЕЗ ОГРАНИЧЕНИЙ  
-    > !!! ОБРАЩАЙТЕСЬ НА sales@trovemat.com  
+    > !!! ATTENTION  
+    > !!! CURRENT COMMAND INSTALLS DEMO-VERSION OF THE TROVEMAT SOFTWARE  
+    > !!! FOR THE UNLIMITED VERSION
+    > !!! EMAIL TO sales@trovemat.com  
   
     ``` SHELL 
     wget https://trovemat.com/trovemat_online_installer.sh -O /tmp/trovemat_online_installer.sh && sudo bash /tmp/trovemat_online_installer.sh $USER
     ```
-1. Откалибровать сенсорный дисплей: в терминале набрать команду:
+1. Calibrate touch-screen using the following shell command:
     ``` SHELL 
     sudo apt install xinput-calibrator && xinput_calibrator --device {id}
     ```
-    id Тачскрина (вводится без фигурных скобок) можно посмотреть после установки Trovemat в списке устройств.
-1. Перезагрузить систему, > Trovemat запустится автоматически при загрузке системы.
-1. Настроить ПО Trovemat в соответствии с документом ["Инструкция по использованию ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bru%5D.md)
+    You can find id of the touch-screen (enter without curly braces) after installing Trovemat software in the device list.
+1. Restart OS, > Trovemat software will launch automatically after OS starts.
+1. Setup Trovemat software according to ["Trovemat software User Guide"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md)
 
-## Инструкция по установке ПО киоска Trovemat на ОС Ubuntu 16.04 Server x64
-1. Установка Trovemat производится на операционной системе Ubuntu 16.04 Server x64
-    1. Убедитесь в процессе установки что выбрана опция установки "OpenSSH Server".
-    1. Установка ОС производится с настройками по умолчанию.
-1. Установить Trovemat (ввести команду в терминале)  
+## Installing Trovemat software with Ubuntu 16.04 Server x64
+1. Install Ubuntu 16.04 Server x64
+    1. Make sure that you check "OpenSSH Server" while installing OS.
+    1. Use default settings while installing OS.
+1. Install Trovemat software (by running following command in the OS command shell)  
     
-    1. Установка демонстрационной версии ПО Trovemat
-    > !!! ВНИМАНИЕ  
-    > !!! ДАННАЯ КОМАНДА УСТАНАВЛИВАЕТ ДЕМОНСТРАЦИОННУЮ ВЕРСИЮ ПО КИОСКА  
-    > !!! ДЛЯ ПОЛУЧЕНИЯ ЛИЦЕНЗИОННОЙ ВЕРСИИ БЕЗ ОГРАНИЧЕНИЙ  
-    > !!! ОБРАЩАЙТЕСЬ НА sales@trovemat.com  
+    > !!! ATTENTION  
+    > !!! CURRENT COMMAND INSTALLS DEMO-VERSION OF THE TROVEMAT SOFTWARE  
+    > !!! FOR THE UNLIMITED VERSION
+    > !!! EMAIL TO sales@trovemat.com  
   
     ``` SHELL 
     wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
@@ -41,130 +40,133 @@
     sudo ./trovemat_online_installer_ubuntu.sh $USER
     ```
     
-    1. Установка лицензионной версии ПО Trovemat
+    1. Installing licensed version of the Trovemat Software
         
-        Для установки лицензионной версии необходимо получить URL, по которому будет доступна лицензионная версия. После получения данного URL установка лицензионной версии выполняется следующими командами в терминале:
+        For installing licensed version of the Trovemat software you need to have an URL, for downloading this version. After getting this URL you can run following commands to install that licensed version:
 
 			wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
 			chmod +x trovemat_online_installer_ubuntu.sh
-			sudo ./trovemat_online_installer_ubuntu.sh $USER СЮДА_НЕОБХОДИМО_ВВЕСТИ_URL_ПОЛУЧЕННЫЙ_ПОСЛЕ_ОПЛАТЫ_СЧЁТА_ЗА_ПО_TROVEMAT
+			sudo ./trovemat_online_installer_ubuntu.sh $USER ENTER_URL_OF_THE_LICENSED_VERSION_OF_THE_TROVEMAT_SOFTWARE
 
-			Пример команды для установки лицензионной версии с URL https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz:
+			Example with URL https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz:
 			wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
 			chmod +x trovemat_online_installer_ubuntu.sh
 			sudo ./trovemat_online_installer_ubuntu.sh $USER https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz
+
+1. When install is complete, computer will reboot. After system start Trovemat software will start automatically.
+1. Setup Trovemat software according to ["Trovemat software User Guide"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md)
+
+## Typical commands, used for Trovemat software set-up from TOX messenger
+
+You can set-up Trovemat software by sending commands from any application, supporting TOX protocol.
+Before sending any commands to Trovemat Kiosk, you need to add your "tox id" to Kiosk's friend list:
+1. Enter service menu by pressing sequentially F1 and F2 on the keyboard, attached to Kiosk.
+1. Press "Add admin" - first added administrator will be created with the full rights, and also you can't delete that admin anymore using service menu.
+1. In TOX client you need to accept request from Trovemat software and wait till Trovemat goes online in the client application's friends list.
+
+Below, there are several main commands, that needs to be run when you setup your Trovemat software for the first time (in that document we give some test data in the commands description just for example). Full description of all available commands can be viewed in document ["Trovemat software User Guide"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md). You can use any quotes in the commands - double quotes, single quotes, and quotes from the smartphone onscreen keyboars etc.
+
+    !!! ATTENTION  
+    !!! You have to restart Kiosk's OS after running all set-up commands, using the following command from TOX client: service restart
+
+In the descriptions below we use angle brackets to identify parameters, that needs to be filled up with concrete values, according to Trovemat software installation details. For example, string like "<INTEGER NUMBER - ID OF THE KIOSK>" in text of real command will look like "2".
+
+1. Change Kiosk name:
+
+		settings set "config.parameters.point_name" "<KIOSK NAME>"
+1. Change Kiosk ID:
+
+		settings set "config.parameters.point_id" "<INTEGER NUMBER - ID OF THE KIOSK>"
+1. Save login and password for Jetcrypto Wallet account:
+    1. Login:
+
+			settings set "config.gateways.jetcrypto_wallet->username" "<JetCrypto Wallet login>"
+    1. Password:
+
+			settings set -secure "crypto.jetcrypto_wallet_password" "<JetCrypto Wallet password>"
+1. Save access keys from chosen cryptocurrency exchange (we using Poloniex account for an example - see the following document for set-up other supported exchanges ["Trovemat software User Guide"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md#Настройка-взаимодействия-с-биржами)):
+    1. Public key:
     
-1. По завершении установки Trovemat компьютер будет перезапущен. После перезагрузки системы Trovemat запустится автоматически.
-1. Настроить ПО Trovemat в соответствии с документом ["Инструкция по использованию ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bru%5D.md)
-
-## Типовой список команд, отправляемых в мессенджере TOX для настройки Trovemat
-
-Настройка терминала производится путем отправки команд из любого клиента Tox.
-Прежде чем отправлять команды, необходимо добавить свой "tox id" в Trovemat:
-1. Зайти в сервисное меню (последовательное нажатие клавиш на клавиатуре F1 и F2)
-1. Нажать на кнопку "Добавить администратора" - первый добавленный администратор будет создан с полными правами, без возможности удаления его из сервисного меню)
-1. В клиенте Tox принять заявку в друзья и дождаться, пока Trovemat в Tox’е станет online.
-
-Ниже будут приведены основные команды для первоначальной настройки терминала (в данном документе приведены тестовые данные для настроек). Для более детального понимания процесса настроек необходимо использовать документ ["Инструкция по использованию ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bru%5D.md). Кавычки, которые можно использовать в командах - все виды кавычек, привычные как при работе с мобильными телефонами, так и при работе с Desktop-операционными системами (включая апострофы).
-
-    !!! ВНИМАНИЕ  
-    !!! После завершения всех настроек необходимо перезапустить киоск следующей командой: service restart
-
-В указанных командах в угловых скобках указываются те данные, вместо которых необходимо подставлять конкретные значения (т.е. например строка вида "<ЦЕЛОЕ ЧИСЛО - ИДЕНТИФИКАТОР ТЕРМИНАЛА>" в тексте команды будет выглядеть как "2").
-
-1. Изменить название точки:
-
-		settings set "config.parameters.point_name" "<НАЗВАНИЕ КОНКРЕТНОГО ТЕРМИНАЛА>"
-1. Изменить идентификатор терминала:
-
-		settings set "config.parameters.point_id" "<ЦЕЛОЕ ЧИСЛО - ИДЕНТИФИКАТОР ТЕРМИНАЛА>"
-1. Сохранить логин и пароль от учетной записи Jetcrypto Wallet:
-    1. Логин:
-
-			settings set "config.gateways.jetcrypto_wallet->username" "<ЛОГИН ОТ КОШЕЛЬКА JetCrypto Wallet>"
-    1. Пароль:
-
-			settings set -secure "crypto.jetcrypto_wallet_password" "<ПАРОЛЬ ОТ КОШЕЛЬКА JetCrypto Wallet>"
-1. Сохранить ключи от выбранной биржи (в качестве примера используются параметры для биржи Poloniex - для настройки других бирж см. документ ["Инструкция по использованию ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bru%5D.md#Настройка-взаимодействия-с-биржами)):
-    1. Публичный ключ:
-    
-			settings set "config.payments.common_params.<НАЗВАНИЕ ПАРАМЕТРА, ГДЕ ХРАНИТСЯ ПУБЛИЧНЫЙ КЛЮЧ ОТ ВЫБРАННОЙ БИРЖИ>" "<ПУБЛИЧНЫЙ КЛЮЧ ОТ ВЫБРАННОЙ БИРЖИ>"
+			settings set "config.payments.common_params.<Parameter name, where public key will be stored>" "<Contents of the public key>"
 			
-			Пример для биржи Poloniex:
+			Example using Poloniex:
 			settings set "config.payments.common_params.poloniex_public_key" "00000000-00000000-00000000-00000000"
-    1. Приватный ключ:
+    1. Private key:
     
-			settings set -secure "crypto.<НАЗВАНИЕ ПАРАМЕТРА, ГДЕ ХРАНИТСЯ СЕКРЕТНЫЙ КЛЮЧ ОТ ВЫБРАННОЙ БИРЖИ>" "<ПРИВАТНЫЙ КЛЮЧ ОТ ВЫБРАННОЙ БИРЖИ>"
+			settings set -secure "crypto.<Parameter name, where secret key will be stored>" "<Contents of the secret key>"
 			
-			Пример для биржи Poloniex:
+			Example using Poloniex:
 			settings set -secure "crypto.poloniex_secret_key" "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
 
-1. Установка ограничений на минимальную и максимальную суммы внесения наличных в рамках одного платежа (по умолчанию минимальная сумма внесения наличных 1, максимальная 15000) в текущей валюте:
-    1. Минимальный лимит:
+1. Setup min and max amount for accepted cash for one payment (defaults: min amount 1, max amount 15000) in currently accepted currency:
+    1. Min limit:
     
-			settings set "config.payments.limit_min" "<МИНИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
+			settings set "config.payments.limit_min" "<MIN AMOUNT OF THE ACCEPTED CASH>"
 		
-			Пример - установим минимальную сумму внесения 200 в текущей валюте: 
+			Example - set 200 as min accepted cash in currently accepted currency: 
 			settings set "config.payments.limit_min" "200"
-    1. Максимальный лимит:
+    1. Max limit:
 
-			settings set "config.payments.limit_max" "<МАКСИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
-    1. Максимальный лимит внесённых наличных денежных средств на главной странице (по умолчанию 15000) в текущей валюте. Указывается отдельно для каждой фиатной валюты, поддерживаемой купюроприёмником:
+			settings set "config.payments.limit_max" "<MAX AMOUNT OF THE ACCEPTED CASH>"
+			
+			Example - set 15000 as max accepted cash in currently accepted currency: 
+			settings set "config.payments.limit_max" "15000"			
+    1. Max limit of accepted cash on the main page in currently accepted currency (default: 15000). You need to setup this limit separately for each fiat currency, accepted by the cash identification module:
 
-			settings set "config.interface.menu.limit_max-><КОД ФИАТНОЙ ВАЛЮТЫ ДЛЯ КОТОРОЙ УСТАНАВЛИВАЕТСЯ ОГРАНИЧЕНИЕ>" "<МАКСИМАЛЬНАЯ СУММА ВНЕСЕНИЯ НАЛИЧНЫХ>"
+			settings set "config.interface.menu.limit_max-><ISO-4217 SYMBOL CODE OF THE ACCEPTED FIAT CURRENCY>" "<MAX LIMIT FOR CASH ACCEPTANCE>"
 		
-			Пример - установим максимальный лимит 14999 для валюты "RUB": 
-			settings set "config.interface.menu.limit_max->RUB" "14999"
-1. Установка валюты, в которой отображаются цены на криптовалюту на главном экране ПО Trovemat:
+			Example - setup max limit 14999 for "EUR" fiat currency: 
+			settings set "config.interface.menu.limit_max->EUR" "14999"
+1. Fiat currency setup for displaying prices/courses for cryptocurrencies on the main screen of the Trovemat software:
 
-		settings set "config.payments.currency" "<КОД ФИАТНОЙ ВАЛЮТЫ В КОТОРОЙ ОТОБРАЖАЮТСЯ КУРСЫ КРИПТОВАЛЮТ>"
+		settings set "config.payments.currency" "<ISO-4217 SYMBOL CODE OF THE ACCEPTED FIAT CURRENCY>"
 	
-		Пример: Отображать на главном экране курсы криптовалют в американских долларах (USD):
+		Example: Display all prices/courseson the main screen using US Dollars (USD):
 		settings set "config.payments.currency" "USD"
-1. Настройка списка доступных для внесения купюр (по умолчанию к приёму доступны все купюры, поддерживаемые купюроприёмником):
+1. Setup list of accepted fiat currencies and/or banknotes (default: all banknotes, accepted by cash identification module, is enabled):
 
-		settings set "config.peripherals.validator->enabled_currencies" "<СПИСОК РАЗРЕШЁННЫХ К ПРИЁМУ ВАЛЮТ ИЛИ КУПЮР>"
+		settings set "config.peripherals.validator->enabled_currencies" "<LIST OF ACCEPTED CURRENCIES/BANKNOTES>"
 	
-		Пример: разрешить к приёму рублевые купюры номиналов 100, 500, 1000 и 5000:
-		settings set "config.peripherals.validator->enabled_currencies" "RUB:100,RUB:500,RUB:1000,RUB:5000"
-1. Настройка комиссии:
-    1. Задаем условие применение комиссии при внесении суммы от 0 в текущей валюте:
+		Example: Enable to acceptance EUR banknotes of the following nominals: 20, 50, 100, 200:
+		settings set "config.peripherals.validator->enabled_currencies" "EUR:20,EUR:50,EUR:100,EUR:200"
+1. Setup the value of the convinience fee:
+    1. Setup the condition for applying fee value for payments with the minimum amount value in the current currency:
     		
-			settings set "config.payments.fee.part->min" "<МИНИМАЛЬНАЯ СУММА ПРИНЯТЫХ НАЛИЧНЫХ, НАЧИНАЯ С КОТОРОЙ ПРИМЕНЯЕТСЯ ДАННОЕ ПРАВИЛО ДЛЯ РАСЧЁТА СУММЫ КОМИССИИ>"
+			settings set "config.payments.fee.part->min" "<MIN PAYMENT AMOUNT, FOR WHICH THAT FEE VALUE WILL BE APPLIED>"
 			
-			Пример: добавляем правило для применения комиссии начиная с внесённой суммы "0":
+			Example: Setup non-zero amount limit for that convinience fee rule:
 			settings set "config.payments.fee.part->min" "0"
-    1. Задаем комиссю в % от внесённых наличных денежных средств:
+    1. Setup up convinience fee value in percents from payment amount:
     		
-			settings set "config.payments.fee.part->percent" "<ЦЕЛОЕ ЧИСЛОВ - ПРОЦЕНТНАЯ СТАВКА КОМИССИИ>"
+			settings set "config.payments.fee.part->percent" "<INTEGER NUMBER - PERCENT FROM PAYMENT AMOUNT FOR FEE>"
 		
-			Пример: установим комиссию в размере 7% от суммы внесённых денежных средств:
+			Example: Setup fee 7% from payment amount:
 			settings set "config.payments.fee.part->percent" "7"
-    1. Задаем фиксированную составляющую комиссии в текущей валюте:
+    1. Setup fix fee rate in current currency:
 			
-			settings set "config.payments.fee.part->fix" "<ЦЕЛОЕ ЧИСЛОВ - ФИКСИРОВАННАЯ СОСТАВЛЯЮЩАЯ КОМИССИИ>"
+			settings set "config.payments.fee.part->fix" "<INTEGER NUMBER - FIX FEE RATE>"
 		
-			Пример: установим фиксированную часть комиссии 50 в текущей валюте:
+			Example: Setup fix fee rate 10 in currently accepted fiat currency:
 			settings set "config.payments.fee.part->fix" "50"
-1. Изменяем параметры терминала (название, адрес и т.д.):
-    1. Имя дилера:
+1. Setup Kiosk parameters (name, address, etc):
+    1. Owner's name:
     
-			settings set "config.point_info.dealer_name->value" "<НАИМЕНОВАНИЕ КОМПАНИИ ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
-    1. Адрес дилера:
+			settings set "config.point_info.dealer_name->value" "<NAME OF THE KIOSK OWNER>"
+    1. Owner's address:
     
-    		settings set "config.point_info.dealer_address->value" "<ЮРИДИЧЕСКИЙ АДРЕС КОМПАНИИ ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
-    1. Номер телефона дилера:
+    		settings set "config.point_info.dealer_address->value" "<KIOSK OWNER ADDRESS>"
+    1. Owner's phone number:
     
-    		settings set "config.point_info.dealer_phone->value" "<НОМЕР ТЕЛЕФОНА ВЛАДЕЛЬЦА ТЕРМИНАЛА>"
-    1. Адрес точки, где расположен данный терминал:
+    		settings set "config.point_info.dealer_phone->value" "<KIOSK OWNER PHONE NUMBER>"
+    1. Address of the Kiosk's location:
     
-    		settings set "config.point_info.point_address->value" "<ФАКТИЧЕСКИЙ АДРЕС УСТАНОВКИ ТЕРМИНАЛА>"  
-1. Изменяем код страны по-умолчанию при вводе номера телефона:
+    		settings set "config.point_info.point_address->value" "<ADDRESS OF THE KIOSK'S LOCATION>"  
+1. Change the phone prefix number, displayed by default on the "Enter phone number" screen (for KYC procedure):
 
-		settings set "config.interface->default_phone_code" "<КОД СТРАНЫ ПО СТАНДАРТУ ISO 3166-1>" 
+		settings set "config.interface->default_phone_code" "<ISO 3166-1 COUNTRY PHONE PREFIX>" 
 		
-		Пример: установим по-умолчанию код страны +7 (Россия):
-		settings set "config.interface->default_phone_code" "RU"
-1.  Перезапуск киоска для применения всех установленных настроек: 
+		Пример: Setup phone prefix by default for Ukraine +38:
+		settings set "config.interface->default_phone_code" "UA"
+1.  Restart Kiosk to apply all previously entered settings: 
 		
 		service restart
