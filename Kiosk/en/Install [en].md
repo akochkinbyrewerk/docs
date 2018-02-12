@@ -25,7 +25,7 @@ There are 2 possible options for running Trovemat software:
 
 ## Installing Trovemat software with Ubuntu 16.04 Server x64
 1. Install Ubuntu 16.04 Server x64
-    1. Make sure that you check "OpenSSH Server" while installing OS.
+    1. Make sure that you check "OpenSSH Server" option while installing OS.
     1. Use default settings while installing OS.
 1. Install Trovemat software (by running following command in the OS command shell)  
     
