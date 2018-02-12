@@ -77,68 +77,68 @@ Example:
 > Default values.
 If parameter is missing in the configs, or it has value "default" - Trovemat software will load it's default value. 
 
-> Ccылки на значения.
-Если значение параметра начинается на "config." - киоск трактует его как ссылку. В примере выше атрибут extended_logging тега barcodereader задан через ссылку на значение extended_logging в parameters.
+> References to another parameter's value.
+If parameter value begins with "config." - Trovemat software reads this value as reference to another parameter value. In the above example attribute "extended_logging" of tag "barcodereader" is a reference to the value of a parameter "extended_logging" in tag "parameters".
 
-* parameters - общие параметры терминала.
-    * extended_logging - дополнительное логирование:
-   	 > **!!! ВНИМАНИЕ ! При включении дополнительного логгирования в лог-файлы будут попадать абсолютно все данные, передаваемые устройству, в том числе секретные данные, не предназначенные для логгирования !!!** 
-		- **"false"** (значение по умолчанию) - отключено.
-		- **"true"** - включено.
-    * point_id - номер точки. Значение по умолчанию - 0.
-    * point_name - наименование точки для отображения в мессенджере в качестве имени контакта. Если данный атрибут не указан - наименование контакта будет "Trovemat kiosk #<ЗНАЧЕНИЕ ИЗ АТРИБУТА point_id>".
-* payments - параметры платежей по умолчанию. Могут быть переопределены для каждого оператора на шаге "money_entry" в operators.xml. Описание параметров в разделе "Операторы".
-    * gateway - значение по умолчанию - "" - наименование шлюза
-    * currency - значение по умолчанию - "USD".
-    * limit_min - значение по умолчанию - "0".
-    * limit_max - значение по умолчанию - "1000000".
-    * payment_type - значение по умолчанию - "mut_price".
-    * fee - по умолчанию - отсутствует.
-    * check_name - значение по умолчанию - "default.chq".
-    * failed_check_name - значение по умолчанию - "default_failed.chq".
-    * common_params - список параметров, которые можно использовать в operators.xml подобно "полям".
+* parameters - common parameters
+    * extended_logging - the most complete log files:
+   	 > **!!! ATTENTION ! When you turn on extended logging, you must be aware of the fact, that all data will be logged in the text files, including sensetive data from devices, not intended to be stored in a usual text files !!!** 
+		- **"false"** (default value) - turned off.
+		- **"true"** - turned on.
+    * point_id - Identification number of this Kiosk installation. Default value - 0.
+    * point_name - Symbolic name of this Kiosk installation for displaying in messenger as a contact name. If this attribute not present or empty - name of the contact would be "Trovemat kiosk #<VALUE FROM ATTRIBUTE point_id>".
+* payments - Default parameters for payments. Can be redefined for each operator in "money_entry" step inside operators.xml file. Parameters full description can be found at "Operators" section.
+    * gateway - Default value - "" - Gateway name.
+    * currency - Default value - "USD".
+    * limit_min - Default value - "0".
+    * limit_max - Default value - "1000000".
+    * payment_type - Default value - "mut_price".
+    * fee - Missing by default.
+    * check_name - Default value - "default.chq".
+    * failed_check_name - Default value - "default_failed.chq".
+    * common_params - List of parameters, that can be used in operators.xml file like "fields".
 * interface
-    * wait_init_devices - переход со страницы инициализации на страницу меню.
-		- **"0"** (значение по умолчанию) - не дожидаясь инициализации устройств.
-		- **"1"** - ждать завершение инициализации устройств с параметром "show_errors" не равным "0".
-		- **"2"** - ждать завершение инициализации всех устройств.
-	* lang - язык интерфейса главной страницы по умолчанию
-	* default_phone_code - код страны по-умолчанию по стандарту ISO 3166-1 при вводе номера телефона. Если значение атрибута пустое - код страны по-умолчанию отображаться не будет. Если данный атрибут не указан - код страны по-умолчанию будет "+1"
-	* menu - тег, описывающий поведение главной страницы:
-		* vending - значение по умолчанию "true" - флаг, разрешающий внесение наличных денежных средств на главном экране без выбора конкретной крипто-валюты для покупки
-		* limit_max - максимальная сумма для внесения на главном экране в указанной валюте.
-	* inactivity_timer - таймаут неактивности пользователя в секундах на различных экранах:
-		* data_entry - на экране ввода (сканирования) номера кошелька
-		* message - на экране сообщения клиенту
-		* money_entry - на экране внесения наличных
+    * wait_init_devices - how to switch between initialization page and main page.
+		- **"0"** (default value) - do not wait for devices to be initialized.
+		- **"1"** - wait for initialization of the devices, that has parameter "show_errors" with value not equal "0".
+		- **"2"** - wait for initialization of all devices.
+	* lang - main page language by default
+	* default_phone_code - ISO 3166-1 country code for "enter phone number" page. If the value of this attribute is empty - then country code field will not be filled up with the value. If this attribute is missing - then country code by default will be "+1"
+	* menu - tag, describing main page behavior:
+		* vending - default value "true" - flag, that allow cash acceptance on the main page without choosing any cryptocurrency (vending machine logic, when you first insert cash, than choose the snack that you want to buy)
+		* limit_max - max cash amount accepted on the main page for each currency, attribute name is currency code, attribute value - is the max limit value for that currency.
+	* inactivity_timer - Inactivity timeout in seconds for different pages:
+		* data_entry - "Data entry" page - where client enters (or scan) it's wallet address
+		* message - "Message" screen to client
+		* money_entry - Cash acceptance page
 * terminal
-    * init - тег, описывающий параметры для запуска приложения при старте киоска
-        * app - строка - приложение, которое киоск запустит отдельным процессом при старте. Через пробелы можно добавить аргументы.
-        * timeout - целое число - время ожидания старта и завершения приложения в мсек. Если указано значение -1 - то таймаут не контролируется.
-* peripherals    
-    * model - модель устройства. Если устройства нет, оставить значение пустым. Значение по умолчанию - "".
-    * port - номер последовательного порта, используемого данным устройством. Значение по умолчанию - "".
-    * baudrate - скорость COM порта, используемого данным устройством. Значение по умолчанию - "9600".
-    * extended_logging - дополнительное логирование, в том числе, всех команд передаваемых в COM-порт устройству.  
-		> **!!! ВНИМАНИЕ ! При включении дополнительного логгирования в лог-файлы будут попадать абсолютно все данные, передаваемые устройству, в том числе секретные данные, не предназначенные для логгирования !!!**  
-		- **"false"** (значение по умолчанию) - отключено.
-		- **"true'** - включено.
-    * show_errors - при обнаружении неисправностей в данном устройстве, показывать экран "Киоск не работает".
-		- **"0"** (значение по умолчанию) - отключено.
-		- **"1"** - только если нет активных платежей или оставшейся наличности.
-		- **"2"** - переключать сразу.
-* validator - Поддерживаемые модели (указывается в атрибуте model):
-    - **"mei_ebds"** - купюроприёмник MEI. Поддерживается перепрошивка киоском. При запуске киоска проверяется наличие файла 'validator.bin' (прошивка) в корневой директории и, если таковой имеется, производится попытка прошивки. После успешной прошивки файл удаляется. Поддерживает следующие параметры:
-		- **enabled_currencies** - список валют, которые может принимать купюроприёмник. Пустое значение означает приём всех валют, которые поддерживаются прошивкой купюроприёмника. Значение по умолчанию - пустая строка. Поддерживается 2 формата записи:
-			1. Строка с разделителем "," (запятая), в строке через разделитель указываются трёхбуквенные наименования валют по стандарту ISO-4217. Пример: "RUB,USD" - разрешён приём валют "Российский рубль" (RUB, 643), "Доллар США" (USD, 840).
-			1. Строка с разделителем "," (запятая), в строке через разделитель указываются конкретные банкноты, приём которых разрешён. Банкноты указываются в следующем формате "CUR:NOM", CUR - трёхбуквенное наименование валюты банкноты по стандарту ISO-4217, NOM - номинал указанной банкноты в основных единицах указанной валюты. Пример: "RUB:10,RUB:1000,USD:10,USD:100" - разрешён приём банкнот "10 Российских рублей" (RUB, 643, 10RUB), "1000 Российских рублей" (RUB, 643, 1000RUB), "10 долларов США" (USD, 840, 10USD), "100 долларов США" (USD, 840, 100USD).
-    - **"test_validator"** - тестовый программно-эмулируемый купюроприёмник для отладочных целей.
-* printer - Поддерживаемые модели (указывается в атрибуте model):
-	- **"tg2480"** - чековый принтер CUSTOM TG2480. В некоторых случаях (зависит от версии прошивки ПО принтера) будет также поддерживаться принтер Custom VKP 80 II с такими же настройками.
-	- **"np-f3092d"** - Чековый принтер Nippon NP-F3092D. Для данного принтера не реализована функция авто-поиска - параметры для подключения необходимо указывать вручную.
-	- **"test_printer"** - тестовый программно-эмулируемый принтер для отладочных целей.
-    * charset_code_table - номер таблицы символов, используемой при печати. Значение по умолчанию - "0".
-        * Для tg2480:
+    * init - tag, described parameters for launching application when kiosk starts
+        * app - string - application, that would be launched as a separate process when Trovemat software starts. You can write an arguments for that application separeted by spaces, in that string.
+        * timeout - integer number  - timeout in msek for waiting application to start and finish. If value is "-1" - than that timeout is ignored.
+* peripherals - describes models and parameters for the devices (e.g. cash identification module or receipt printer)
+    * model - device model. Empty value means that there is no device of such type. Default value - "".
+    * port - name of the serial port, used by this device. Default value - "".
+    * baudrate - Baud rate of the serial port, used by this device. Default value - "9600".
+    * extended_logging - the most complete log files, including all bytes transferred to and from device:
+   	 > **!!! ATTENTION ! When you turn on extended logging, you must be aware of the fact, that all data will be logged in the text files, including sensetive data from devices, not intended to be stored in a usual text files !!!** 
+		- **"false"** (default value) - turned off.
+		- **"true"** - turned on.
+    * show_errors - flag - show "Out of order" page when device have critical error(s):
+		- **"0"** (default value) - do not show
+		- **"1"** - show "Out of order" page only if there is no active payments or no unspent cash
+		- **"2"** - show "Out of order" page immediately
+* validator - Supported models (stored in "model" attribute):
+    - **"mei_ebds"** - MEI cash identification module (aka note acceptor). Trovemat software supports firmware update for that model. When Trovemat software starts, it check for existence of file 'validator.bin' (firmware archive) in the root directory of Trovemat software installation, and, if that file exists, performs firmware update for the device. If firmware update was successfull, then that file is deleted. Supported attributes:
+		- **enabled_currencies** - list of accepted currencies (if device firmware supports acceptance more than one currency). Empty value means that all supported by the device currencies can be accepted. Default value - empty string. Supported syntax:
+			1. String with the delimeter "," (comma), it contains 3-symbols ISO-4217 currency codes. Example: "EUR,USD" - Allow acceptance of "EURO" (EUR, 978), "US Dollar" (USD, 840).
+			1. String with the delimeter "," (comma), it contains banknotes descriptions, that allowed to accept by device. Syntax for banknote description "CUR:NOM", CUR - 3-symbols ISO-4217 currency code, NOM - nominal of that banknote in main unit of the currency. Example: "EUR:50,EUR:100,USD:10,USD:100" - allowed to accept "50 Euro" (EUR, 978, 50EUR), "100 Euro" (EUR, 978, 100EUR), "10 US Dollars" (USD, 840, 10USD), "100 US Dollars" (USD, 840, 100USD).
+    - **"test_validator"** - test device emulated by Trovemat software for debug purpose.
+* printer - Supported models (stored in "model" attribute):
+	- **"tg2480"** - receipt printer CUSTOM TG2480. In some cases (depends on the printer's firmware) with the same settings receipt printer Custom VKP 80 II will be functional.
+	- **"np-f3092d"** - Receipt printer Nippon NP-F3092D.
+	- **"test_printer"** - test device emulated by Trovemat software for debug purpose.
+    * charset_code_table - number of characters table, used for printing. Default value - "0".
+        * For "tg2480" model:
             - **"0"** - CP437 (US)
             - **"2"** - CP850 (Multilingual)
             - **"3"** - CP860 (Portuguesse)
@@ -146,12 +146,12 @@ If parameter is missing in the configs, or it has value "default" - Trovemat sof
             - **"5"** - CP865 (Nordic)
             - **"17"** - CP866 (Cyrillic)
             - **"19"** - CP858 (for Euro symbol 213)
-* dispenser - Поддерживаемые модели (указывается в атрибуте model):
-    - **"puloon_lcdm"** - диспенсер купюр Poloon LCDM1000/2000 (1 и 2 кассеты соответственно).
-    - **"test_dispenser"** - тестовый программно-эмулируемый диспенсер купюр для отладочных целей (2 кассеты).
-    * Следующих атрибутов необходимо задать столько же, сколько кассет содержит диспенсер:
-    * cassette_0 - номинал купюр 0-ой кассеты, например "100 USD".
-    * default_capacity_0 - количество купюр по умолчанию для 0-ой кассеты (при инкассации можно изменить это значение), например "1000".
+* dispenser - Supported models (stored in "model" attribute):
+    - **"puloon_lcdm"** - Banknotes dispenser "Poloon LCDM1000/2000" (1 and 2 cassettes respectively).
+    - **"test_dispenser"** - test device emulated by Trovemat software for debug purpose (2 cassettes).
+    * Following attributes must be specified for each cassette in dispenser (cassette number starts from 0):
+    	* cassette_N - nominal of N-nth cassette, for example cassette_0="100 USD".
+    	* default_capacity_N - banknotes count by default for N-nth cassette (admin can change that value during service procedures), for example: default_capacity_0="1000".
 		
 * point_info - В данном разделе можно задать неограниченное количество системных полей с любыми именами. Эти поля можно использовать при печати чеков и запросах к шлюзам. "Id" поля задается вида _INFO_*, где * - имя поля заглавными буквами. Имя и значение могут быть заданы атрибутами "name" и "value". Пример: <dealer_name name="Дилер" value="Рога и Копыта" /> будет преобразовано в системное поле с id="_INFO_DEALER_NAME", name="Дилер" и value="Рога и Копыта".
 
