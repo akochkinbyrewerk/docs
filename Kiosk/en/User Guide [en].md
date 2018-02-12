@@ -11,7 +11,7 @@ Kiosk configuration files are located in the directory "configs".
 	
 Example:
 1. If config.xml - correct. After successful validation Trovemat software will copy that file and save it as config_lastgood.xml.
-1. If [operators.xml](#Operators-list-operatorsxml) is wrong. After unsuccessful validation Trovemat software will copy that file and save it as operators_lastbad.xml. Then Trovemat software tries to load operators_lastgood.xml, and if it's valid - copy operators_lastgood.xml and save it as [operators.xml](#Operators-list-operatorsxml)
+1. If [operators.xml](#operators-list-operatorsxml) is wrong. After unsuccessful validation Trovemat software will copy that file and save it as operators_lastbad.xml. Then Trovemat software tries to load operators_lastgood.xml, and if it's valid - copy operators_lastgood.xml and save it as [operators.xml](#operators-list-operatorsxml)
 
 ## Trovemat software configuration (config.xml)
 	
@@ -87,7 +87,7 @@ If parameter value begins with "config." - Trovemat software reads this value as
 		- **"true"** - turned on.
     * point_id - Identification number of this Kiosk installation. Default value - 0.
     * point_name - Symbolic name of this Kiosk installation for displaying in messenger as a contact name. If this attribute not present or empty - name of the contact would be "Trovemat kiosk #<VALUE FROM ATTRIBUTE point_id>".
-* payments - Default parameters for payments. Can be redefined for each operator in "money_entry" step inside operators.xml file. Parameters full description can be found at "Operators" section.
+* payments - Default parameters for payments. Can be redefined for each operator in "money_entry" step inside operators.xml file. Parameters full description can be found at "[Operators](#operators-list-operatorsxml)" section.
     * gateway - Default value - "" - Gateway name.
     * currency - Default value - "USD".
     * limit_min - Default value - "0".
