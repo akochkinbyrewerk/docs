@@ -1,4 +1,3 @@
-
 # Trovemat Kiosk User Guide
 
 ## Файлы настроек киоска (configs)
