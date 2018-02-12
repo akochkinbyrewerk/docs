@@ -14,7 +14,7 @@ Watch video, showing Trovemat software example: https://youtu.be/6f3cR620obs
 
 Technical information can be found at: https://trovemat.com
 
-Install guide can be found here: ["Install Trovemat software guide"](https://github.com/trovemat/docs/blob/master/docs/Kiosk/en/Install%20[en].md)
+Install guide can be found here: ["Install Trovemat software guide"](https://github.com/trovemat/docs/blob/master/Kiosk/en/Install%20%5Ben%5D.md)
     
 ## Can you please describe client journey of the Trovemat software? How clients can buy cryptocurrency in Trovemat Kiosk?
 
