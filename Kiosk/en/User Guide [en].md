@@ -449,10 +449,10 @@ id="SUM" name="Сумма" value="1234567890"
 * F1 + F2 - Enter Trovemat software service menu
 * F1 + F3 - Restart Trovemat software without restarting OS
 * F1 + F4 - Launch touch-screen calibrate procedure
-* F9 + ... - Virtual cash identification module command - see [Device emulation](#device_emulation)
-* F10 + ... - Virtual QR-code scanner - see [Device emulation](#device_emulation)
-* F11 + ... - Virtual receipt printer - see [Device emulation](#device_emulation)
-* F12 + ... - Virtual banknotes dispenser - see [Device emulation](#device_emulation)
+* F9 + ... - Virtual cash identification module command - see [Device emulation](#device-emulation)
+* F10 + ... - Virtual QR-code scanner - see [Device emulation](#device-emulation)
+* F11 + ... - Virtual receipt printer - see [Device emulation](#device-emulation)
+* F12 + ... - Virtual banknotes dispenser - see [Device emulation](#device-emulation)
 
 ## Особенности работы приложения в демонстрационном режиме
 1. SMS отправляется через сервер [jetcrypto.com](https://jetcrypto.com/) от имени "Trovemat".
@@ -502,7 +502,7 @@ id="SUM" name="Сумма" value="1234567890"
 ## Настройка списка администраторов для управления киоском
 
 Для управления ПО Trovemat может использоваться любй мессенджер, поддерживающий протокол [Tox](https://tox.chat/). Управление списком пользователей, которые имеют возможность взаимодействовать с киоском, осуществляется следующим образом:
-1. Перейти в сервисный режим (см. [Service keys](#service_keys))
+1. Перейти в сервисный режим (см. [Service keys](#service-keys))
 1. Нажать кнопку "Список администраторов"
 1. Открыть QR-код, содержащий tox-id пользователя, которого надо добавить в список администраторов киоска
 1. Сканировать открытый QR-код на киоске
@@ -552,7 +552,7 @@ Secret key stored in parameter "crypto.exmo_secret_key"
 
 ## Exit to command line from Trovemat software
 
-1. Close Trovemat software (see. [Service keys](#service_keys))
+1. Close Trovemat software (see. [Service keys](#service-keys))
 1. Press ALT + F4
 1. Press "Logout" button
 1. When you're done with the command line - run command "exit" to launch Trovemat software or just simply reboot
