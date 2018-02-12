@@ -526,35 +526,35 @@ id="SUM" name="Сумма" value="1234567890"
 	```
 	В результате выполнения этой команды ПО Trovemat пришлёт расширенное описание команды "status"
 
-## Настройка взаимодействия с биржами
+## Settings for crytpocurrency exchange
 
 ### [Poloniex](https://poloniex.com)
 
-API Key хранится в параметре "config.payments.common_params.poloniex_public_key"
+API Key stored in parameter "config.payments.common_params.poloniex_public_key"
 
-Secret хранится в параметре "crypto.poloniex_secret_key"
+Secret stored in parameter "crypto.poloniex_secret_key"
 
 ### [Bitfinex](https://www.bitfinex.com/)
 
-API key хранится в параметре "config.payments.common_params.bitfinex_public_key"
+API key stored in parameter "config.payments.common_params.bitfinex_public_key"
 
-API key secret хранится в параметре "crypto.bitfinex_secret_key"
+API key secret stored in parameter "crypto.bitfinex_secret_key"
 
 ### [Bittrex](https://bittrex.com)
 
-API key хранится в параметре "config.payments.common_params.bittrex_public_key"
+API key stored in parameter "config.payments.common_params.bittrex_public_key"
 
-API key secret хранится в параметре "crypto.bittrex_secret_key"
+API key secret stored in parameter "crypto.bittrex_secret_key"
 
 ### [EXMO](https://exmo.com)
 
-Public key хранится в параметре "config.payments.common_params.exmo_public_key"
+Public key stored in parameter "config.payments.common_params.exmo_public_key"
 
-Secret key хранится в параметре "crypto.exmo_secret_key"
+Secret key stored in parameter "crypto.exmo_secret_key"
 
-## Запуск командной строки
+## Exit to command line from Trovemat software
 
-1. Закрыть ПО Trovemat (см. [Сервисные сочетания клавиш](#Сервисные-сочетания-клавиш))
-1. Нажать ALT + F4
-1. В появившемся диалоге нажать кнопку "Выйти" ("Logout")
-1. После завершения работы в консольном режиме наберите команду "exit" для запуска ПО Trovemat или перезагрузите ОС
+1. Close Trovemat software (см. [Сервисные сочетания клавиш](#Сервисные-сочетания-клавиш))
+1. Press ALT + F4
+1. Press "Logout" button
+1. When you're done with the command line - run command "exit" to launch Trovemat software or just simply reboot
