@@ -83,7 +83,7 @@ Any model, supported by OS.
 
 ## How can I pay for Trovemat Kiosk?
 
-After you place your order on our web-site, we will contact with you about payment details. We require 100% payment of the ordeк before order will be processed.
+After you place your order on our web-site, we will contact with you about payment details. We require 100% payment of the order before order will be processed.
 
 ## Delivery
 
