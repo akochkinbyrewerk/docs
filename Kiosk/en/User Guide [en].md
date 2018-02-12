@@ -1,21 +1,21 @@
 # Trovemat Kiosk User Guide
 
-## Файлы настроек киоска (configs)
-Файлы настроек киоска хранятся в директории configs.
-* config.xml - настройки киоска.
-* menu.xml - структура меню.
-* operators.xml - список операторов.
-* crypto.xml - список зашифрованных переменных.
-* *_lastgood.xml - последний успешно загруженный файл.
-* *_lastbad.xml - последний неудачно загруженный файл.
+## Kiosk configuration files (configs)
+Kiosk configuration files are located in the directory "configs".
+* config.xml - Trovemat software configuration file
+* menu.xml - Menu structure
+* operators.xml - List of, so called, operators (concrete scenarios how to interact with the Kiosk client for selling cryptocurrency)
+* crypto.xml - secure storage for settings
+* *_lastgood.xml - last succesfully loaded file
+* *_lastbad.xml - last unsuccesfully loaded file
 	
-Пример:
-1. Если config.xml - правильный. После успешной проверки киоск его скопирует и сохранит под именем config_lastgood.xml.
-1. Если [operators.xml](#Список-операторов-operatorsxml) - неправильный. После неуспешной проверки киоск его скопирует и сохранит под именем operators_lastbad.xml. Далее попробует загрузить operators_lastgood.xml, и если он окажется валидным: скопирует operators_lastgood.xml и сохранит под именем [operators.xml](#Список-операторов-operatorsxml)
+Example:
+1. If config.xml - correct. After successful validation Trovemat software will copy that file and save it as config_lastgood.xml.
+1. If [operators.xml](#Operators-list-operatorsxml) is wrong. After unsuccessful validation Trovemat software will copy that file and save it as operators_lastbad.xml. Then Trovemat software tries to load operators_lastgood.xml, and if it's valid - copy operators_lastgood.xml and save it as [operators.xml](#Operators-list-operatorsxml)
 
-## Настройки киоска (config.xml)
+## Trovemat software configuration (config.xml)
 	
-Пример конфига:
+Example:
 ``` XML
 <config>
     <parameters>
@@ -74,8 +74,8 @@
 </config>
 ```
 
-> Значения по умолчанию.
-Если параметр в конфиге отсутствует или имеет значение "default" - берется его значение по умолчанию. 
+> Default values.
+If parameter is missing in the configs, or it has value "default" - Trovemat software will load it's default value. 
 
 > Ccылки на значения.
 Если значение параметра начинается на "config." - киоск трактует его как ссылку. В примере выше атрибут extended_logging тега barcodereader задан через ссылку на значение extended_logging в parameters.
@@ -217,7 +217,7 @@
 </menu>
 ```
 
-## Список операторов (operators.xml)
+## Operators list (operators.xml)
 
 * operator - оператор. Описывает схему проведения платежа. Название данного тега может быть любым, не противоречащим правилам наименования XML-тегов.
 	* step - шаг платежа.
