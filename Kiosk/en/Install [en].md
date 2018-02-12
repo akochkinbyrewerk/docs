@@ -9,7 +9,7 @@ There are 2 possible options for running Trovemat software:
     
     > !!! ATTENTION  
     > !!! CURRENT COMMAND INSTALLS DEMO-VERSION OF THE TROVEMAT SOFTWARE  
-    > !!! FOR THE UNLIMITED VERSION
+    > !!! FOR THE UNLIMITED VERSION  
     > !!! EMAIL TO sales@trovemat.com  
   
     ``` SHELL 
@@ -31,7 +31,7 @@ There are 2 possible options for running Trovemat software:
     
     > !!! ATTENTION  
     > !!! CURRENT COMMAND INSTALLS DEMO-VERSION OF THE TROVEMAT SOFTWARE  
-    > !!! FOR THE UNLIMITED VERSION
+    > !!! FOR THE UNLIMITED VERSION  
     > !!! EMAIL TO sales@trovemat.com  
   
     ``` SHELL 
