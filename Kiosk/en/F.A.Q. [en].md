@@ -71,7 +71,7 @@ Power consumption of the Kiosk: 200 Watts – 500 Watts, depending of the kiosk 
 ## Which hardware is supported by Trovemat software?
     
 Cash identification modules:
-1. MEI Advance SC (RS-232 connection, using MEI EBDS communication protocol)
+1. MEI SC Advance (RS-232 connection, using MEI EBDS communication protocol)
 
 Receipt printers:
 1. CUSTOM VKP-80II (USB / RS-232)
