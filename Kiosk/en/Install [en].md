@@ -42,7 +42,7 @@ There are 2 possible options for running Trovemat software:
     
     1. Installing licensed version of the Trovemat Software
         
-        For installing licensed version of the Trovemat software you need to have an URL, for downloading this version. After getting this URL you can run following commands to install that licensed version:
+        For installing license version of the Trovemat software you need to have an URL for downloading this version. After getting this URL you can run following commands to install that license version:
 
 			wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
 			chmod +x trovemat_online_installer_ubuntu.sh
