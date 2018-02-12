@@ -84,7 +84,7 @@ In the descriptions below we use angle brackets to identify parameters, that nee
     1. Password:
 
 			settings set -secure "crypto.jetcrypto_wallet_password" "<JetCrypto Wallet password>"
-1. Save access keys from chosen cryptocurrency exchange (we using Poloniex account for an example - see the following document for set-up other supported exchanges ["Trovemat software User Guide"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md)):
+1. Save access keys from chosen cryptocurrency exchange (we using Poloniex account for an example - see the following document for set-up other supported exchanges ["Trovemat software User Guide"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md#Settings_for_crytpocurrency_exchange)):
     1. Public key:
     
 			settings set "config.payments.common_params.<Parameter name, where public key will be stored>" "<Contents of the public key>"
