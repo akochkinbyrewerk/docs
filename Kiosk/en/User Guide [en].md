@@ -153,41 +153,39 @@ If parameter value begins with "config." - Trovemat software reads this value as
     	* cassette_N - nominal of N-nth cassette, for example cassette_0="100 USD".
     	* default_capacity_N - banknotes count by default for N-nth cassette (admin can change that value during service procedures), for example: default_capacity_0="1000".
 		
-* point_info - В данном разделе можно задать неограниченное количество системных полей с любыми именами. Эти поля можно использовать при печати чеков и запросах к шлюзам. "Id" поля задается вида _INFO_*, где * - имя поля заглавными буквами. Имя и значение могут быть заданы атрибутами "name" и "value". Пример: <dealer_name name="Дилер" value="Рога и Копыта" /> будет преобразовано в системное поле с id="_INFO_DEALER_NAME", name="Дилер" и value="Рога и Копыта".
+* point_info - In that section you can setup unlimited parameters with any name. These parameters will be interpreted as fields during client session. These fields can be used in receipts and in requests to gateways. "Id" of the field has name like _INFO_*, where * - name of the field written in uppercase letters. Name and value of the field can be setup by "name" and "value" attributes. Example: <dealer_name name="Dealer" value="Trovemat services seller, Gmbh" /> will be translated into field with id="_INFO_DEALER_NAME", name="Dealer" и value="Trovemat services seller, Gmbh".
 
-* gateways В данном разделе можно задать неограниченное количество тегов, описывающих подключение к различным серверам.
-Название вложенного тега - это название шлюза, которое можно использовать в шагах (см. тег "step" атрибут "gateway"). Для каждого шлюза указыватся следующие аттрибуты:
-	- type - наименование типа шлюза. Доступные типы: 
-		- **"trovemat"** - шлюз для доступа к api.jetcrypto.com.
-		Для данного шлюза указываются следующие дополнительные аттрибуты:
-			- url - адрес сервера		
-			- username - учётная запись для доступа
-			- password - пароль для доступа к API
-			- tasks_interval - интервал опроса шлюза на предмет новых задач
-		- **"tox_text"** - шлюз для доступа к терминалу через любой tox-мессеннджер.
-			* Для данного шлюза указываются следующие дополнительные атрибуты:
-				- udp_enabled - использование UDP протокола. Значение по умолчанию - "true".
-				- local_discovery_enabled - поиск других tox-узлов внутри локальной сети. Значение по умолчанию - "true".
-				- hole_punching_enabled - использование метода "hole-punching" для поиска других tox-узлов. Значение по умолчанию - "true".
-				- Все три атрибута (udp_enabled, local_discovery_enabled, hole_punching_enabled) - можно отключить для уменьшения трафика, однако в этом случае для выхода в сеть необходимо tcp подключение к узлу, поддерживающему tcp relay.
-			* Для данного шлюза указываются следующие дополнительные теги:
-				- users - список доверенных tox-аккаунтов. Наименование вложенного тега - имя такого аккаунта.
-					- tox_id - идентификатор tox-аккаунта
-					- message_queue_limit - размер очереди неотправленных сообщений (если терминал или пользователь находятся вне сети). Значение по умолчанию - "100".
-				- nodes - список узлов для подключения к tox-сети. Наименование вложенного тега - имя такого узла.
-					- ip - ip адрес узла
-					- port - порт узла
-					- tox_id - публичный ключ узла
-					- tcp_relay - подключение к узлу по TCP. Имеет смысл только если узел поддерживает данную функцию и для шлюза отключен UDP. Значение по умолчанию - "false".
-		- Ряд атрибутов указывается в корневом теге для шлюзов без пользователей (например "trovemat") и в тегах описывающих пользователей для шлюзов с пользователями (например "tox_text"):
-			- check - разрешение на использование данного шлюза для информационных запросов с киоска. Значение по умолчанию - "false".
-			- pay - разрешение на использование данного шлюза для платежных запросов с киоска. Значение по умолчанию - "false".
-			- tasks - уровень команд, разрешенных к выполнению со стороны шлюза (указанный уровень и ниже).
-				- **"-1"** (значение по умолчанию) - запрещены все.
-				- **"0"** - просмотр информации, не влияющий на его работу.
-				- **"1"** - сервисные команды (выключение, перезагрузка и т.п.).
-				- **"2"** - изменение параметров терминала.
-				- **"3"** - выполнение скриптов на терминале от имени администратора.
+* gateways - In that section you can setup unlimited number of tags, describing connections to different servers. Name of child tag - it's the name of the gateway, which can be used in steps descriptions (see attribute "gateway" of tag "step"). For each gateway you have to specify following attributes:
+	- type - Gateway type. Available types: 
+		- **"trovemat"** - gateway for accessing api.jetcrypto.com.
+			* Additional attributes for that gateway:
+				- url - server address		
+				- username - login for JetCrypto account
+				- password - password for JetCrypto account
+				- tasks_interval - New tasks request period (seconds). Default value - "1". 
+		- **"tox_text"** - gateway for accessing TOX network for Trovemat software.
+			* Additional attributes for that gateway:
+				- udp_enabled - use UP protocol. Default value - "true".
+				- local_discovery_enabled - search for another tox-nodes inside local networl. Default value - "true".
+				- hole_punching_enabled - use "hole-punching" method for search of another tox-nodes. Default value - "true".
+				> **Attributes "udp_enabled", "local_discovery_enabled", "hole_punching_enabled" can be disabled in order to minimize network traffic, but in that case you need to use tcp connection to node, that supports tcp relay.**
+				- users - list of trusted tox-accounts. Name of child tag - name of trusted account.
+					- tox_id - id of tox contact
+					- message_queue_limit - size of the unsent message queue for that tox contact (if Trovemat software or tox account is offline). Default value - "100".
+				- nodes - node list for connecting to tox network. Name of the child tag - is the name of the node.
+					- ip - ip address of the node
+					- port - port number of the node
+					- tox_id - public key of the node
+					- tcp_relay - flag - connecting to tox node using TCP. Will work only if node can accept TCP connections and for that gateway UDP is disabled (udp_enabled is "false"). Default value - "false".
+		- Some attributes for gateways tags can be set for gateways without users ("trovemat" gateway, for example) and in users tags for gateways that works with users ("tox_text" for example):
+			- check - flag - enables gateway without users for info queries from Trovemat software. Default value - "false".
+			- pay - flag - enables gateway without users for payment queries from Trovemat software. Default value - "false".
+			- tasks - attribute for user or gateway tag - defines permission level for current user:
+				- **"-1"** (default value) - all forbidden.
+				- **"0"** - info requests, not changing Kiosk state or settings
+				- **"1"** - service commands (restart, shut down, etc).
+				- **"2"** - change Trovemat software settings
+				- **"3"** - running scripts in OS using Trovemat software account credentials.
 			- info_task - уровень команд, при выполнении которых другими пользователями, вы получите уведомления (указанный уровень и выше). Значение по умолчанию - "2".
 			- info_factor - получение уведомлений о добавлении/удалении новых факторов состояния. Значение по умолчанию - "false".
 			- info_full_state - получение уведомлений о изменении полного состояния терминала (состоящего из суммы всех текущих факторов состояния). Значение по умолчанию - "false".
@@ -195,7 +193,7 @@ If parameter value begins with "config." - Trovemat software reads this value as
 			- info_bill - получение уведомлений о получении купюр купюроприемником. Значение по умолчанию - "false".
 			- info_payment - получение уведомлений о платежах. Значение по умолчанию - "false".
     
-## Меню (menu.xml)
+## Menu (menu.xml)
 Меню состоит из групп и операторов, соответственно в конфиге разрешены только теги типа 'group' или 'operator'. Обязательным для всех элементов является аттрибут 'type'. Все операторы, присутствующие в меню, должны быть и в списке операторов [operators.xml](#Список-операторов-operatorsxml). Оператор в файле [operators.xml](#Список-операторов-operatorsxml) определяется по наименованию его тега.
 
 Аттрибуты:
@@ -267,7 +265,7 @@ If parameter value begins with "config." - Trovemat software reads this value as
 			- id - имя параметра в ответе от сервера. Также в текущей клиентской сессии создаётся парамер с данным именем. Данное имя будет актуально только в течении текущей клиентской сессии. Данное имя может быть использовано в ссылке. Например, шлюз в ответе присылает поле с наименованием "buy". В шаге будет указано "...<receive_field id="buy" name="COURSE" />...". Далее в любом другом шаге, например в теге "request_field" можно использовать значение данного параметра путём указания строки "|buy|" - вместо этой строки будет подставлено конкретное значение, полученное от шлюза.
 			- name - наименование параметра внутри данного сценария. 
 
-Пример файла operators.xml, состоящего из двух операторов:
+Example of operators.xml, contains 2 operators:
 ``` XML
 <?xml version="1.0" encoding="utf-8"?>  
 <operators>
@@ -334,7 +332,7 @@ If parameter value begins with "config." - Trovemat software reads this value as
 </operators>
 ```
 
-## Шаблоны чеков (*.chq)
+## Receipts templates (*.chq)
 
 В шаблонах чеков можно использовать переменные.
 
@@ -397,7 +395,7 @@ id="SUM" name="Сумма" value="1234567890"
 * _INCS_INCASSATION_TIME - время текущей инкассации
 * _INCS_MONEY_INFO - подробная информация о принятых купюрах
 
-## Логи (Logs/*.log)
+## Logs (Logs/*.log)
 
 Хранятся в директории logs, расположенной на одном уровне с приложением. Имя файла включает объект логгирования и дату. Каждая строка в файле состоит из "типа сообщения", времени, идентификатора потока, номера строки кода и текста сообщения.
 
@@ -412,49 +410,49 @@ id="SUM" name="Сумма" value="1234567890"
 * ERR - произошла ошибка.
 * EXT - расширенная информация, выводится только когда включена соответствующая настройка в конфиге киоска.
 	
-## Эмуляция устройств
+## Device emulation
 
 В целях тестирования ПО вместо реальных устройств можно включать их эмуляцию. Для этого в настройках типа модели устройства необходимо указать специальное имя. Для эмуляции событий устройств нужно нажать на клавиатуре последовательно две клавиши из диапазона (F1 - F12). Первым нажатием выбирается устройство, вторым - событие данного устройства. 
 
 * Validator.
     * model - "test_validator"
-    * клавиша - "F9"
-    * события:
-        * F1 - устройство вышло из строя.
-        * F2 - устройство работает.
-        * F3 - кассета убрана.
-        * F7 - внести 1 у.е. (1 копейка для RUB)
-        * F8 - внести 10 у.е. (10 копеек для RUB)
-        * F9 - внести 100 у.е. (1 рубль для RUB)
-        * F10 - внести 500 у.е. (5 рублей для RUB)
-        * F11 - внести 1000 у.е. (10 рублей для RUB)
-        * F12 - внести 5000 у.е. (50 рублей для RUB)
+    * key - "F9"
+    * events:
+        * F1 - device is offline
+        * F2 - device online
+        * F3 - cassette removed
+        * F7 - Inserted 1 minimum unit for chosen currency
+        * F8 - Inserted 10 minimum unit for chosen currency
+        * F9 - Inserted 100 minimum unit for chosen currency
+        * F10 - Inserted 500 minimum unit for chosen currency
+        * F11 - Inserted 1000 minimum unit for chosen currency
+        * F12 - Inserted 5000 minimum unit for chosen currency
 		
-* Printer - Печатает чеки в файлы (test_check_*.txt)
+* Printer - Prints receipts into text files (temp/receipt_*.txt)
     * model - "test_printer"
-    * клавиша - "F11"
-    * события:
-        * F1 - устройство вышло из строя.
-        * F2 - устройство работает.
+    * key - "F11"
+    * events:
+        * F1 - device is offline
+        * F2 - device online
 	
 * Dispenser.
     * model - "test_dispenser"
-    * клавиша - "F12"
-    * события:
-        * F1 - устройство вышло из строя.
-        * F2 - устройство работает.
-        * F3 - кассета убрана.
-        * F4 - выдать колличество денег равное номиналу банкнот 0-ой кассеты.	
+    * key - "F12"
+    * events:
+        * F1 - device is offline
+        * F2 - device online
+        * F3 - cassette removed
+        * F4 - dispense number of banknotes, equal to the nominal of the banknotes from of the 0-nth cassette	
 
-## Сервисные сочетания клавиш
-* F1 + F1 - закрытие ПО Trovemat для доступа к системному меню.
-* F1 + F2 - переход в сервисное меню ПО Trovemat.
-* F1 + F3 - перезапуск ПО Trovemat без перезагрузки ОС.
-* F1 + F4 - запуск утилиты калибровки сенсорного экрана.
-* F9 + ... - виртуальный валидатор банкнот (купюроприёмник) - см. [Эмуляция устройств](#Эмуляция-устройств).
-* F10 + ... - виртуальный сканер штрихкодов - см. [Эмуляция устройств](#Эмуляция-устройств).
-* F11 + ... - виртуальный чековый принтер - см. [Эмуляция устройств](#Эмуляция-устройств).
-* F12 + ... - виртуальный диспенсер купюр - см. [Эмуляция устройств](#Эмуляция-устройств).
+## Service keys
+* F1 + F1 - Close Trovemat software for access to system console
+* F1 + F2 - Enter Trovemat software service menu
+* F1 + F3 - Restart Trovemat software without restarting OS
+* F1 + F4 - Launch touch-screen calibrate procedure
+* F9 + ... - Virtual cash identification module command - see [Device emulation](#Device_emulation)
+* F10 + ... - Virtual QR-code scanner - see [Device emulation](#Device_emulation)
+* F11 + ... - Virtual receipt printer - see [Device emulation](#Device_emulation)
+* F12 + ... - Virtual banknotes dispenser - see [Device emulation](#Device_emulation)
 
 ## Особенности работы приложения в демонстрационном режиме
 1. SMS отправляется через сервер [jetcrypto.com](https://jetcrypto.com/) от имени "Trovemat".
