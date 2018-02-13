@@ -180,27 +180,27 @@ If parameter value begins with "config." - Trovemat software reads this value as
 		- Some attributes for gateways tags can be set for gateways without users ("trovemat" gateway, for example) and in users tags for gateways that works with users ("tox_text" for example):
 			- check - flag - enables gateway without users for info queries from Trovemat software. Default value - "false".
 			- pay - flag - enables gateway without users for payment queries from Trovemat software. Default value - "false".
-			- tasks - attribute for user or gateway tag - defines permission level for current user:
+			- tasks - attribute for user or gateway tag - defines permission level for current user/gateway:
 				- **"-1"** (default value) - all forbidden.
 				- **"0"** - info requests, not changing Kiosk state or settings
 				- **"1"** - service commands (restart, shut down, etc).
 				- **"2"** - change Trovemat software settings
 				- **"3"** - running scripts in OS using Trovemat software account credentials.
-			- info_task - уровень команд, при выполнении которых другими пользователями, вы получите уведомления (указанный уровень и выше). Значение по умолчанию - "2".
-			- info_factor - получение уведомлений о добавлении/удалении новых факторов состояния. Значение по умолчанию - "false".
-			- info_full_state - получение уведомлений о изменении полного состояния терминала (состоящего из суммы всех текущих факторов состояния). Значение по умолчанию - "false".
-			- info_state - получение уведомлений о изменении простого состояния терминала (Ok, Error, т.п.). Значение по умолчанию - "false".
-			- info_bill - получение уведомлений о получении купюр купюроприемником. Значение по умолчанию - "false".
-			- info_payment - получение уведомлений о платежах. Значение по умолчанию - "false".
+			- info_task - applied to user - filters all notification below that level about executing tasks by other users. For example, if this attribute set to "2", than that user will receive notification, when other user tries to execute task with levels "2", "3" and will not receive notifications about tasks with levels "0" and "1". Default value - "2".
+			- info_factor - flag - applied to user - receive notifications about add/remove new state factors. Default value - "false".
+			- info_full_state - flag - applied to user - receive notifications about changing of a detailed state (added or removed one of the factors) of the Trovemat software (for example, if receipt printer is low on paper, this will be treated as change of a detailed state) Default value - "false".
+			- info_state - flag - applied to user - receive notifications about changing of a overall state of the Trovemat software (e.g. it's in the error state, or everything fine) - this state also used as a state of a TOX account for that Trovemat instance. Default value - "false".
+			- info_bill - flag - applied to user - receive notifications about accepting/stacking banknotes into cassette. Default value - "false".
+			- info_payment - flag - applied to user - receive notifications about new payments. Default value - "false".
     
 ## Menu (menu.xml)
-Меню состоит из групп и операторов, соответственно в конфиге разрешены только теги типа 'group' или 'operator'. Обязательным для всех элементов является аттрибут 'type'. Все операторы, присутствующие в меню, должны быть и в списке операторов [operators.xml](#Список-операторов-operatorsxml). Оператор в файле [operators.xml](#Список-операторов-operatorsxml) определяется по наименованию его тега.
+Menu contains groups and operators. Allowed only 'group' or 'operator' tag inside that file. Attribute 'type' is required for all tags. All operators in menu must be described in operators list [operators.xml](#operators-list-operatorsxml). Operator description in menu and in operators list [operators.xml](#operators-list-operatorsxml) must have same tag name.
 
-Аттрибуты:
-* "type" - тип элемента. Возможные значения: "group" (группа операторов), "operator" (конкретный оператор).
-* "name" - Наименование группы. Значением атрибута является ключ фразы из файла с локализованными сообщениями interface/js/language.js для текущей выбранной локали
+Attributes:
+* "type" - type of an item. Possible values: "group" - group of operators - when user press that button in the menu, list of items from that group will be displayed to client, "operator" - concrete operator - when user press that button in the menu, Trovemat software will begin to execute scenario for that operator (scenario described in operators list [operators.xml](#operators-list-operatorsxml)).
+* "name" - Group name. Value must contain key name from file with localized string interface/js/language.js for current locale. This name displayed on the screen with group items.
 
-Пример файла menu.xml для меню, которое состоит из 8-ми операторов на главной странице:
+Example of menu.xml for menu, which contains 8 operators on the main page:
 ``` XML
 <?xml version="1.0" encoding="utf-8"?>
 <menu type="group" name="choose_your_currency" >
@@ -217,53 +217,54 @@ If parameter value begins with "config." - Trovemat software reads this value as
 
 ## Operators list (operators.xml)
 
-* operator - оператор. Описывает схему проведения платежа. Название данного тега может быть любым, не противоречащим правилам наименования XML-тегов.
-	* step - шаг платежа.
-		* type - тип шага платежа. Обязательный параметр. Значение по умолчанию отсутствует. Допустимые значения:			
-			- **"data_entry"** - ввод данных платежа пользователем.
-			- **"change_currency"** - выбор валюты. Пользователь сам выбирает валюту из списка. 
-				* mode - Возможные значения (способы формирования списка валют):
-					1. **"USD,RUB,EUR"** - Перечисление списка валют через запятую.
-					1. **"NOTE_VAL"** (значение по умолчанию) - все валюты, поддерживаемые купюроприёмником.			
-			- **"money_entry"** - внесение денег пользователем. Так же тут задаются параметры платежей, значения по умолчанию для которых заданы в conig.xml -> payments.
-				* payment_type - тип платежа. Возможные значения:
-					- **"mut_price"** - цена не фиксированна.
-					- **"fix_price"** - цена фиксированна.
-				* price - цена (для фиксированного платежа). Значение по умолчанию отсутствует. Обязательно к заполнению при **type="fix_price"**.
-				* currency - валюта платежа, трехбуквенный код по ISO 4217.
-				* limit_min - минимальная сумма для приёма наличных.
-				* limit_max - максимальная сумма для приёма наличных.
-				* fee - комиссия, задается промежутками по диапазону принятых денег.
-					* part - один из диапазонов, для каждого из которых задается своя комиссия.
-						* min - порог, с которого начинает взыматься данная комиссия.
-						* percent - процентная составляющая коммиссии.
-						* fix - фиксированная составляющая коммиссии.
+* operator - Operator. Describes payments scenario for that operator. Name of this tag can be in any format, according to XML rules.
+	* step - Step of the scenario.
+		* type - attribute - Type of the step. Required attribute. No defauде value. Possible values:
+			- **"data_entry"** - User enters some payment details on that step (e.g. wallet address).
+			- **"choose_currency"** - Step for chosing fiat currency to insert by the client. User can choose any fiat currency (supported by Trovemat software) from the list. 
+                * mode - Currency list, user can choose from:
+					1. **"USD,RUB,EUR"** - List of currencies to display to client.
+					1. **"NOTE_VAL"** (default value) - Display all currencies, accepted by cash identification module.			
+			- **"money_entry"** - Insert fiat cash by the client. Also you can redefine payment parameters default values, saved in conig.xml -> payments:
+				* payment_type - Type of payment. Possible values:
+					- **"mut_price"** - not fixed price.
+					- **"fix_price"** - fixed price.
+				* price - item price (for fixed price operator). No default value. Required in case of **type="fix_price"**.
+				* currency - 3-symbols ISO-4217 currency code.
+                * limit_min - Min accepted amount in fiat currency.
+				* limit_max - Max accepted amount in fiat currency.
+                * network_fee - fixed network fee in cryptocurrency, added to convinience fee.
+				* fee - Convinience fee, can be setup with different values depends on the amount of inserteв fiat currency.
+					* part - Interval for concrete fee value:
+						* min - min amount of inserted cash. When reached, this fee rate begins to be active for that payment.
+						* percent - Percent value for fee.
+						* fix - Fix fee rate.
 						
-					Пример:
-					От 0 до 50 у.е. - взымать коммиссию в размере 2% + 2.01 у.е.
-					От 50 и выше - взымать коммиссию в размере 1%.
+					Example:
+					From 0 to 50 - Convinience fee 2% + 2.01 fix
+					From 50 and more - Convinience fee 1%
 					``` XML
 					<fee>
 						<part_1 min="0" percent="2" fix="2.01" />
 						<part_2 min="50" percent="1" fix="0" />
 					</fee>
 					```
-			- **"check"** - запрос к шлюзу без платежа.
-				* server - Наименование сервера, на который необходимо отправлять запрос. Конкретные параметры для доступа к серверу находятся в conig.xml -> network -> <НАИМЕНОВАНИЕ СЕРВЕРА>
-				* path - строка запроса (адрес). Например: "/api/Method"
-				* method - метод запроса. Возможные значения:
-					- **"POST"** - будет отправлен POST запрос. Тело запроса будет содержать JSON-объект, составленный из полей, описанных в тегах "request_field" данного шага.
-					- **"GET"** - будет отправлен GET-запрос. Тело запроса будет пустым. URL запроса будет составленн из полей, описанных в тегах "request_field" данного шага.
-			- **"pay"** - запрос к шлюзу и осуществление платежа. Параметры данного шага аналогичны параметрами шагов с типом "check"
-			- **"print"** - печать чека.
-				* check_name - имя файла шаблона чека, значение по умолчанию в config.xml.
-			- **"message"** - сообщение пользователю.
-		- request_field - тег - используется для шагов с типом "check" и "pay" как поле запроса:
-			- id - идентификатор поля. Если содержит символ "." (точка) - то в запросе с типом method="POST" данный параметр будет сохраняться как вложенные элемента JSON-объекта. Например, если указан параметр parameters.token то будет отправлен следующий JSON объект в теле запроса: {"parameters" : {"token" : "123123123123"}}
-			- value - содержит значение параметра запроса. Внутри значения можно записать "ссылку" на данные, полученные на другом шаге (от пользователя или от шлюза). Ссылка на поле, введённое клиентом, описывается как "|fi_\<Значение атрибута id тега field\>|". Ссылка на поле, полученное от шлюза, описывается как : "|\<НАИМЕНОВАНИЕ_ПАРАМЕТРА\>|". Например, если был выполнен шаг с типом **"data_entry"** и на этом шаге клиент ввёл значение для поля с id="2", то значение может выглядеть как "001-|fi_2|" - в этом случае если клиент ввёл значение "123" на сервер будет отправлена строка "001-123".
-		- receive_field - поле, которое присылает шлюз в ответе на запрос.
-			- id - имя параметра в ответе от сервера. Также в текущей клиентской сессии создаётся парамер с данным именем. Данное имя будет актуально только в течении текущей клиентской сессии. Данное имя может быть использовано в ссылке. Например, шлюз в ответе присылает поле с наименованием "buy". В шаге будет указано "...<receive_field id="buy" name="COURSE" />...". Далее в любом другом шаге, например в теге "request_field" можно использовать значение данного параметра путём указания строки "|buy|" - вместо этой строки будет подставлено конкретное значение, полученное от шлюза.
-			- name - наименование параметра внутри данного сценария. 
+			- **"check"** - Request for conversion rate from cryptocurrency to fiat from exchange.
+				* server - Server name, where to send this request. Values for accessing server saved in conig.xml -> network -> <SERVER NAME>
+				* path - Request URL (path). E.g.: "/api/Method"
+				* method - Request method. Possible values:
+					- **"POST"** - POST request. Request body will contain JSON-object, containing fields, described in tags with attribute "type" equals to "request_field" value inside current step.
+					- **"GET"** - GET request. Request body will be empty. Request URL will be filled up with fields, tags with attribute "type" equals to "request_field" value inside current step.
+			- **"pay"** - Request to gateway for payment (withdrawal operation from Trovemat owner's wallet to client wallet). Parameters for this step are the same, as in "check" step.
+			- **"print"** - Print receipt.
+				* check_name - name of the receipt template, default value stored in config.xml.
+			- **"message"** - Show some text message to client.
+		- All child tags with attribute "type" equals to "request_field" - used for steps with type "check" and "pay":
+			- id - field id. If value contains symbol "." (point) - in the request with method="POST" this field will be saved as nested elements of JSON object. For example, field with id "parameters.token" will be sent as JSON object inside requests body: {"parameters" : {"token" : "123123123123"}}
+			- value - Value for request field. Inside that value you can place reference to another field or data, received on any previous step (from user or from gateway). Reference to field, filled by client, can be described as "|<NAME OF THE TAG WITH FIELD, FILLED BY USER>|". Reference to field, received from gateway (tag with attribute "type" equals to "receive_field") can be described as "|<TAG NAME WITH ATTRIBUTE 'TYPE' EQUALS TO 'receive_field'>|". Example: Assume that scenario executes step with type **"data_entry"** and on that step user enters value for tag with the name 'field_wallet'. Than in any followed steps we can get that value by using "|field_wallet|" substring. For example, string "01-|field_wallet|" - will be translated to "01-123" in case when user inputs "123" as wallet address on data entry step with field "field_wallet".
+		- All child tags with attribute "type" equals to "receive_field" - field, that Trovemat software receives from gateway in answer to request.
+			- tag name - name of the parameter in server response. When Trovemat software receives response from server, it creates in current client session parameter with name, equal to tag name. This parameter will exists only during current client session. This name can be referenced in any other field. Example: gateway response contains field with the name "buy". In step description we use tag <buy type="receive_field" name="BUY_RECEIVED" />". Then in any other following step, e.g. in step with type "request_field", we can reference to that parameter as follows: "|BUY_RECEIVED|" - Trovemat software replace this string with the value of the received parameter.
+			- name - name of the parameter inside this step. 
 
 Example of operators.xml, contains 2 operators:
 ``` XML
@@ -463,12 +464,7 @@ id="SUM" name="Сумма" value="1234567890"
 ## Особенности работы приложения
 1. Номер телефона вводится в международном формате без символа "+" в начале и без кода страны. Конкретную страну необходимо выбирать из списка перед полем ввода номера телефона. Например для России надо будет вводить "9261234567".
 1. На главной странице курсы берутся с сайта cryptocompare.com
-1. Доступ к биржам осуществляется по токену, который надо прописывать в файле [configs/operators.xml](#Список-операторов-operatorsxml) для соответствующего поля request_field:
-	1. BitLish: в шаге с id="0" и в шаге с id="7" у параметра "request_field" id="parameters.token" указывается токен для доступа к API.		
-	1. EXMO: 
-		- в шаге с id="0" у параметра "request_field" id="parameters.publicKey" указывает API key, в параметре "request_field" id="parameters.secretKey" указывается API secret.
-		- в шаге с id="7" у параметра "request_field" id="params" в параметре указывается API key в атрибуте "publicKey" JSON-объекта, API secret указывается в атрибуте "secretKey" JSON-объекта.
-	1. Poloniex: в шаге с id="7" у параметра "request_field" id="params" в параметре указывается POLONIEX API Key в атрибуте "publicKey" JSON-объекта, POLONIEX API Secret указывается в атрибуте "secretKey" JSON-объекта.
+1. Доступ к биржам осуществляется по ключам, которые надо сохранять в параметрых киоска. Названия параметров уникальные для каждой поддерживаемой биржи (см. [Settings for crytpocurrency exchange](#settings-for-crytpocurrency-exchange))
 
 ## Калибровка сенсорного экрана (touch screen)
 
