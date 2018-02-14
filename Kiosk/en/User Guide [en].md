@@ -457,9 +457,9 @@ For demo version of a Trovemat software it is possible to use software-emulated 
 1. Application automatically shuts down after 10 minutes of work (can be changed upon request on sales@trovemat.com).
 
 ## Особенности работы приложения
-1. Номер телефона вводится в международном формате без символа "+" в начале и без кода страны. Конкретную страну необходимо выбирать из списка перед полем ввода номера телефона. Например для России надо будет вводить "9261234567".
-1. На главной странице курсы берутся с сайта cryptocompare.com
-1. Доступ к биржам осуществляется по ключам, которые надо сохранять в параметрых киоска. Названия параметров уникальные для каждой поддерживаемой биржи (см. [Settings for crytpocurrency exchange](#settings-for-crytpocurrency-exchange))
+1. Phone number must be entered according to mask in input field (withut country code). Country code must be chosen from a list of countries.
+1. Exchange rates on the main page are loaded from cryptocompare.com
+1. Access to cryptocurrency exchanges performed with the access tokens (keys), specified for each exchange separately. Parameters name for storing access keys see at [Settings for crytpocurrency exchange](#settings-for-crytpocurrency-exchange).
 
 ## Калибровка сенсорного экрана (touch screen)
 
