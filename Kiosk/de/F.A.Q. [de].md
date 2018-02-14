@@ -2,8 +2,9 @@
 
 ## Wie funktioniert dieses Gerät?
        
-Arbeitsprozess: - Bareinzahlung - Feststellung der Adresse der Geldbörse des Käufers:
-    
+Arbeitsprozess: 
+- Bareinzahlung 
+- Feststellung der Adresse der Geldbörse des Käufers:
     - Scannen Sie die Adresse von einer bestehenden Geldbörse 
     - Erstellen Sie eine neue Papiergeldbörse (wenn möglich) auf dem Terminal
 - Drucken von Schecks für den Kunden (einschließlich Papiergeldbörse, falls sie erstellt wurde)
