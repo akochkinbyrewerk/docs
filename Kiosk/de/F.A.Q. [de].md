@@ -12,7 +12,7 @@ Link zu einem Video, das Trovemat in Aktion zeigt: https://youtu.be/6f3cR620obs
 
 Technische Informationen finden Sie auf unserer Website: https://trovemat.com
 
-Anweisungen zur Installation der Demo-Version zum Testen: ["Anweisungen zur Installation der Trovemat Kiosk-Software"](https://github.com/trovemat/docs/blob/master/docs/Kiosk/Install%20[ru].md)
+Anweisungen zur Installation der Demo-Version zum Testen: ["Anweisungen zur Installation der Trovemat Kiosk-Software"](https://github.com/trovemat/docs/blob/master/Kiosk/de/Install%20[de].md)
 
 Arbeitsprozess:
 - Bareinzahlung (Bargeld kann sowohl auf dem Hauptbildschirm als auch auf der Cash-Einzahlungsseite getätigt werden)
@@ -56,7 +56,12 @@ Der Kaufvorgang verläuft wie folgt: 1. Der Kunde zahlt Bargeld beim Terminal 1 
 
 ## Welche Börsen werden verwendet?
     
-Folgende Börsen werden derzeit unterstützt: - https://exmo.com - https://poloniex.com - https://bittrex.com - https://bitfinex.com - https://jetcrypto.com
+Folgende Börsen werden derzeit unterstützt: 
+- https://exmo.com 
+- https://poloniex.com 
+- https://bittrex.com 
+- https://bitfinex.com 
+- https://jetcrypto.com
 
 Im Prinzip ist es möglich, unser Zahlungs-Service zur Unterstützung der gewünschten Börsen nachzuarbeiten. Voraussetzungen für solche Nachbearbeitung sind separat zu besprechen.
 
@@ -80,7 +85,10 @@ Leistungsaufnahme: 200 W – 500 W, je nachdem, welche Geräte derzeit im Szenar
     
 Geldscheinempfänger: 1. MEI Advance SC (Anschluss über COM-Port, Betrieb über das Protokoll MEI EBDS)
 
-Drucker: 1. CUSTOM VKP-80II (Anschluss über COM-Port und USB) 1. CUSTOM TG-2480 (Anschluss über COM-Port und USB) 1. Nippon NP-F3092D
+Drucker: 
+1. CUSTOM VKP-80II (Anschluss über COM-Port und USB) 
+1. CUSTOM TG-2480 (Anschluss über COM-Port und USB) 
+1. Nippon NP-F3092D
 
 Touchscreen: Jeder Touchscreen, der vom Betriebssystem unterstützt wird
 
