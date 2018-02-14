@@ -333,87 +333,83 @@ Example of operators.xml, contains 2 operators:
 </operators>
 ```
 
-## Receipts templates (*.chq)
+## Receipt templates (*.chq)
 
-В шаблонах чеков можно использовать переменные.
+In text of receipt templates it is possible to use variables (aliases to fields, fillied by operator scenario).
 
-Правила записи переменных:
-1. Имя переменной заключено в знаки процента "%".
-1. В имени переменной можно использовать латинские заглавные буквы, цифры, знак подчеркивания.
-1. После имени переменной могут идти параметры к переменной.
-	Правила записи параметров к переменным:
-	1. Перед каждым параметром должно стоять двоеточие ":".
-	1. Параметры должны идти строго в порядке их перечисления ниже.
+Variables syntax rules:
+1. Variable name must be enclosed in percent sign ("%").
+1. Name of the variable may consist of: latin uppercase letters, numbers, underscore sign ("_").
+1. After variable name it is possible to set modifiers using following rules:
+	1. Modifiers separeted by colon sign (":")
+	1. Modifiers must be mentioned in strict order, described below.
+        1. Uppercase latin letter "N" or "V". "N" means that variable would be substituted by field name. "V" means that variable would be substituted by field value. Default value: "V".
+        1. Number. Max length of replaced string. If this number is bigger than value length, than the string would be completed by spaces until specified length. If this number is less than value length, than the string would be truncated to specified length.
+        1. Uppercase latin letter "R" or "L". "R" (right) or "L" (left) defines the side, where the string would be truncated or  completed up to specified length. Default value: "L".
 
-Доступные параметры:
-1. Заглавная латинская буква "N" или "V". Определяет имя ("N") или значение ("V") поля необходимо вывести. Значение по умолчанию: "V".
-1. Число, задает длину выводимого значения. Значение переменной будет обрезано или дополнено пробелами до указанной длины.
-1. Заглавная латинская буква "R" или "L". Опеределяет справа ("R") или слева ("L") необходимо обрабатывать поле (убирать лишние символы или добавлять пробелы до нужной длины). Значение по умолчанию: "L".
-
-Пример обработки и вывода переменных.  
-Шаблон:
+Example:
+Receipt template:
 ```
 --------------------------------
 %SUM%
 %SUM:N%: %SUM:V%
-Значение поля сумма: %SUM:V%
-%SUM:N:3:R%.: %SUM:V:5%
+Value of the field SUM: %SUM:V%
+%SUM:N:2:R%.: %SUM:V:5%
 %SUM:20%
 --------------------------------
 ```
-Пусть задано следующее поле:  
-id="SUM" name="Сумма" value="1234567890"
-Тогда результат будет следующим:
+Let's assume that we have define the following field:  
+<sum name="Amount" value="1234567890" />
+Printed receipt will look like the following text:
 ```
 --------------------------------
 1234567890
-Сумма: 1234567890
-Значение поля сумма: 1234567890
-Сум.: 67890
+Amount: 1234567890
+Value of the field SUM: 1234567890
+Am.: 67890
           1234567890
 --------------------------------
 ```
-Пользовательские переменные.
-1. Не могут начинаться со знака подчеркивания "_".
-1. В пользовательские переменные добавляются все поля операторов (field). Идентификаторы задаются вида "fi_id" (fi_23 для field id="23").
+User-defined variables.
+1. Can't start with the underscore "_" sign.
+1. All defined fields is treated as user variables. Name of the tag is the name of the variable.
 
-Системные переменные.
-Переменные, начинающиеся со знака подчеркивания "_" являются системными. Доступны следующие системные переменные:
-* _FIELDS_FOR_PRINT - выводит все пользовательские переменные, у которых значение "print" равно "1", в виде набора строк: "имя_переменной: значение_переменной".
-* _INFO_* - поля, заданные в разделе config.xml -> config -> point_info.
-* _TERMNUMBER - номер терминала (config.xml -> config -> parameters -> point_id)
-* _DATETIME - дата и время
-* _ACCEPTED - количество принятых наличных денежных средств
-* _COMISSION - комиссия
-* _ENROLLED - количество денежных средств к зачислению на счёт клиента
-* _CURRENCY - трехбуквенный код валюты платежа
-* _OPNAME - имя оператора платежа
+System-defined variables.
+All variables, begins with uderscore sign "_" is system. Avaialable variables:
+* _FIELDS_FOR_PRINT - Prints all user-defined variables, which has attribute "print" with value "1", in the following form: "variable_name: variable_value".
+* _INFO_* - fields, from configuration file config.xml -> config -> point_info.
+* _TERMNUMBER - Kiosk number (config.xml -> config -> parameters -> point_id)
+* _DATETIME - Current date and time
+* _ACCEPTED - Total amount of accepted cash, starting from last opened incassation period.
+* _FEE - Fee
+* _CREDIT - Total amount to be converted to cryptocurrency (_ACCEPTED minus _FEE)
+* _CURRENCY - 3-symbols ISO-4217 currency code of the inserted cash
+* _OPNAME - name of the operator
 
-Только для чека инкассации:
-* _INCS_CASSETTE - номер текущей кассеты с наличностью (в настоящее время заменяется на пустую строку)
-* _INCS_NEXT_CASSETTE - номер новой кассеты (в настоящее время заменяется на пустую строку)
+Only for collection receipt template:
 * _INCS_LAST_INCASSATION_TIME - предыдущее время инкассации
 * _INCS_INCASSATION_TIME - время текущей инкассации
-* _INCS_MONEY_INFO - подробная информация о принятых купюрах
+* _INCS_MONEY_INFO - detailed information (with counters) about accepted banknotes.
+* _INCS_GOODS_INFO - detailed information (with counters) about sold cryptocurrencies
 
 ## Logs (Logs/*.log)
 
-Хранятся в директории logs, расположенной на одном уровне с приложением. Имя файла включает объект логгирования и дату. Каждая строка в файле состоит из "типа сообщения", времени, идентификатора потока, номера строки кода и текста сообщения.
+Stored in "logs" directory, located at the application level. Name of each log file includes name of the log object and date. Each log line consist of message type, timestamp, thread id, number of line in code and message text.
 
-Объекты логгирования:
-* Kiosk - лог с основной информацией.
-* Main - критическая информация о работе программы, в случае отсутствия ошибок пуст.
-* Device_* - логи устройств, где * - имя устройства.
+Objects that logs events:
+* Kiosk - Main application log file.
+* Main - Critical information about Trovemat software.
+* Device_* - Devices log (name of the device is a part of a log file name).
 	
-Тип сообщения:
-* INF - простое, можно не обращать внимания, пока всё идет хорошо.
-* WRN - необходимо обратить внимаение, возможно что-то пошло не так, как планировалось.
-* ERR - произошла ошибка.
-* EXT - расширенная информация, выводится только когда включена соответствующая настройка в конфиге киоска.
+Message types:
+* INF - information level.
+* WRN - warning.
+* ERR - error.
+* EXT - Extended message, appears only if extended logging enabled.
 	
 ## Device emulation
 
-В целях тестирования ПО вместо реальных устройств можно включать их эмуляцию. Для этого в настройках типа модели устройства необходимо указать специальное имя. Для эмуляции событий устройств нужно нажать на клавиатуре последовательно две клавиши из диапазона (F1 - F12). Первым нажатием выбирается устройство, вторым - событие данного устройства. 
+For demo version of a Trovemat software it is possible to use software-emulated devices, such as receipts printer and cash identification module. For each device type there are special model name for such virtual devices. To emulate device events you have to use functional keys on hardware keyboard (F1-F12). First key press choses device, second - emulates device event. Interval between key presses must not exceed 5 seconds. Virtual device events can be emulated only in demo version of Trovemat software. Virtual devices must be used only with test purposes!
 
 * Validator.
     * model - "test_validator"
@@ -455,11 +451,10 @@ id="SUM" name="Сумма" value="1234567890"
 * F11 + ... - Virtual receipt printer - see [Device emulation](#device-emulation)
 * F12 + ... - Virtual banknotes dispenser - see [Device emulation](#device-emulation)
 
-## Особенности работы приложения в демонстрационном режиме
-1. SMS отправляется через сервер [jetcrypto.com](https://jetcrypto.com/) от имени "Trovemat".
-1. Платежи проходят через сервер [jetcrypto.com](https://jetcrypto.com/).
-1. На экране поверх приложения выводится надпись о том что это демо-версия.
-1. Приложение работает 10 минут, затем выключается (может быть увеличено по отдельному запросу на sales@trovemat.com).
+## Demo version limitations
+1. SMS sends through server [jetcrypto.com](https://jetcrypto.com/) using "Trovemat" sender name.
+1. There are big red flashing message on the top of the application about demo version.
+1. Application automatically shuts down after 10 minutes of work (can be changed upon request on sales@trovemat.com).
 
 ## Особенности работы приложения
 1. Номер телефона вводится в международном формате без символа "+" в начале и без кода страны. Конкретную страну необходимо выбирать из списка перед полем ввода номера телефона. Например для России надо будет вводить "9261234567".
