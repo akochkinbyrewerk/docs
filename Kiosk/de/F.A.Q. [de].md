@@ -41,9 +41,15 @@ Arbeitsprozess:
 ## Wie verläuft der Vorgang des Kryptowährungskaufs? Bitte beschreiben Sie ausführlich oder geben Sie ein Vorgangsdiagramm.
 
 Der Kaufvorgang verläuft wie folgt: 
-1. Der Kunde zahlt Bargeld beim Terminal 1 ein. Der Kunde scannt die Adresse der Geldbörse des Empfängers oder gibt sie manuell ein, oder erstellt eine neue Papiergeldbörse 
-1. Der Kunde gibt Telefonnummer ein, um SMS-Bestätigungscode 1 zu erhalten. Die Terminal-Software sendet eine Anfrage an Server api.jetcrypto.com für Sendung einer SMS-Mitteilung mit dem Bestätigungscode an die im vorherigen Schritt 1 angegebene Telefonnummer des Kunden. Der Kunde gibt den per SMS erhaltenen Bestätigungscode beim Terminal 1 ein. Die Terminal-Software führt die Anfrage an die gewählte Börse aus für Überweisung der gewählten Kryptowährung von der Geldbörse des Terminaleigentümers an die Geldbörse des Käufers 
-1. Die Börse führt Überweisung 1 aus. Die Terminal-Software druckt eine Quittung für den Kunden mit Festlegung des Betrags der an die angegebene Adresse der Geldbörse 1 überwiesenen Kryptowährung. Nach dem Erstellen einer Transaktion erhält der Kunde (wenn möglich) eine SMS-Mitteilung mit transactionId für Prüfung der Transaktion im blockchain
+1. Der Kunde zahlt Bargeld beim Terminal 
+1. Der Kunde scannt die Adresse der Geldbörse des Empfängers oder gibt sie manuell ein, oder erstellt eine neue Papiergeldbörse 
+1. Der Kunde gibt Telefonnummer ein, um SMS-Bestätigungscode zu erhalten. 
+1. Die Terminal-Software sendet eine Anfrage an Server api.jetcrypto.com für Sendung einer SMS-Mitteilung mit dem Bestätigungscode an die im vorherigen Schritt 1 angegebene Telefonnummer des Kunden. 
+1. Der Kunde gibt den per SMS erhaltenen Bestätigungscode beim Terminal ein. 
+1. Die Terminal-Software führt die Anfrage an die gewählte Börse aus für Überweisung der gewählten Kryptowährung von der Geldbörse des Terminaleigentümers an die Geldbörse des Käufers 
+1. Die Börse führt Überweisung aus. 
+1. Die Terminal-Software druckt eine Quittung für den Kunden mit Festlegung des Betrags der an die angegebene Adresse der Geldbörse überwiesenen Kryptowährung. 
+1. Nach dem Erstellen einer Transaktion erhält der Kunde (wenn möglich) eine SMS-Mitteilung mit transactionId für Prüfung der Transaktion im blockchain
 
 ## Wie ist das Geschäft für den Verkauf der Kryptowährungen über den Kiosk überhaupt organisiert? Können Sie die Mittelbewegung in diesem Vorgang beschreiben?
 
