@@ -456,64 +456,49 @@ For demo version of a Trovemat software it is possible to use software-emulated 
 1. There are big red flashing message on the top of the application about demo version.
 1. Application automatically shuts down after 10 minutes of work (can be changed upon request on sales@trovemat.com).
 
-## Особенности работы приложения
+## Trovemat software special notes
 1. Phone number must be entered according to mask in input field (withut country code). Country code must be chosen from a list of countries.
 1. Exchange rates on the main page are loaded from cryptocompare.com
 1. Access to cryptocurrency exchanges performed with the access tokens (keys), specified for each exchange separately. Parameters name for storing access keys see at [Settings for crytpocurrency exchange](#settings-for-crytpocurrency-exchange).
 
-## Калибровка сенсорного экрана (touch screen)
+## Calibrating touch-screen
+Calibrating procedure can be neccessary in case of incorrect positioning of touches on the screen. This can be a reason of a missed hit on the screen button or wrong behaviour of a Trovemat software. If after calibration procedure problems with the touch-screen still there, then the possible reason of that can be dirty edges of the touch-screen panel (or hardware failure in touch-screen controller) and service maintanence required.
 
-Процедура калибровки сенсорного экрана может понадобиться в случае если сенсорный экран некорректно фиксирует координаты нажатия. Это может проявляться в том, что нажатия на сенсорный экран затруднены (сложно "попасть" в кнопки управления интерфейса ПО Trovemat), а также может проявляться в некорреткной работе интерфейса ПО Trovemat. 
-Если после проведения калибровки сенсорного экрана проблема не устраняется, то, возможно, края сенсорного экрана загрязнены и требуют очистки специалистом по обслуживанию платежных киосков или банкоматов, либо сенсорный экран вышел из строя.
+### Touch-screen calibrating program
 
-### Утилита калибровки
+You can run touch-screen calibrating program by pressing F1 + F4 while Trovemat software is running and showing main page (see [Service keys](#service-keys)).
 
-Запустить утилиту калибровки сенсорного экрана можно посредством нажатия последовательно клавиш F1 и F4 на физической клавиатуре во время работы ПО Trovemat на главной стартовой странице.
+### Manual run of a touch-screen calibrating procedure from command line
 
-### Ручной запуск калибровки сенсорного экрана из командной строки
-
-Откалибровать сенсорный дисплей: 
-1. Выполнить команду 
+Run following script (in case when Trovemat software installed into /opt/trovemat directory)
     ```Shell
-    sudo apt install xinput-calibrator && xinput_calibrator --list
+    /opt/trovemat/screen_calibration.sh $USER
     ```
-    и посмотреть id Тачскрина.
-1. Выполнить команду 
-    ```Shell 
-    xinput_calibrator --device <ИДЕНТИФИКАТОР УСТРОЙСТВА, ОПРЕДЕЛЁННЫЙ НА ПЕРВОМ ШАГЕ>
-    ```
-1. Чтобы сохранить калибровку, нужно скопировать полученную после калибровки информацию (начиная с Section "InputClass" и заканчивая EndSection, включая эти фразы)
-1. Выполнить команду 
-    ```Shell 
-    sudo nano /usr/share/X11/xorg.conf.d/99-calibration.conf
-    ```
-    Возможно, необходимо будет предварительно нажать "Y", чтобы подтвердить действие, соответствующая подсказка будет на экране терминала.
-1. Вставить скопированную информацию, сохранить запись (CTRL+"O" (буква O англ.)) и подтвердить клавишей ENTER, далее выход (CTRL + X)
+    
+## Setting administrator lists for Trovemat software administration
 
-## Настройка списка администраторов для управления киоском
+You can use any program (desktop or mobile version) that supports communication using [Tox protocol](https://tox.chat/). You can manage user list, which have access to Trovemat instance, using following instruction:
+1. Go to service menu (see [Service keys](#service-keys))
+1. Press "Admins list" button
+1. Open QR-code with tox-id of a user you want to add to admins list
+1. Scan opened QR-code by Trovemat software
+1. Accept invitation from Trovemat instance contact using your TOX client
 
-Для управления ПО Trovemat может использоваться любй мессенджер, поддерживающий протокол [Tox](https://tox.chat/). Управление списком пользователей, которые имеют возможность взаимодействовать с киоском, осуществляется следующим образом:
-1. Перейти в сервисный режим (см. [Service keys](#service-keys))
-1. Нажать кнопку "Список администраторов"
-1. Открыть QR-код, содержащий tox-id пользователя, которого надо добавить в список администраторов киоска
-1. Сканировать открытый QR-код на киоске
-1. Подтвердить в мессенджере администратора запрос на добавления в список контактов от ПО Trovemat
-
-Управление ПО Trovemat с использованием мессенджера:
-1. Можно отправить команду
+You can perform almost all tasks using messenger as a communcation channel with Trovemat software:
+1. Help command shows all available commands:
 	```
 	help
 	```
-	в ответ киоск пришлёт список команд, которые он может выполнять
-1. Для получения подробного описания по отдельной команде, необходимо отправить сообщение вида
+	Trovemat software answer will contain description of all supported commands.
+1. To receive full description for any command, you need to send message like:
 	```
-	help 'НАИМЕНОВАНИЕ КОМАНДЫ'
+	help '<COMMAND NAME>'
 	```
 	Например, команда:
 	```
 	help 'status'
 	```
-	В результате выполнения этой команды ПО Trovemat пришлёт расширенное описание команды "status"
+	The result will be a full description of a "status" command.
 
 ## Settings for crytpocurrency exchange
 
