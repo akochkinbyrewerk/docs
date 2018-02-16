@@ -1,5 +1,5 @@
 # Frequently Asked Questions
-## How does Trovemat Kiosk works?
+## How does Trovemat Kiosk work?
        
 Trovemat software steps:
 - Accept cash
@@ -16,7 +16,7 @@ Technical information can be found at: https://trovemat.com
 
 Install guide can be found here: ["Install Trovemat software guide"](https://github.com/trovemat/docs/blob/master/Kiosk/en/Install%20%5Ben%5D.md)
     
-## Can you please describe client journey of the Trovemat software? How clients can buy cryptocurrency in Trovemat Kiosk?
+## Can you please describe client journey of the Trovemat? How clients can buy cryptocurrency in Trovemat Kiosk?
 
 Here are process of byuing cryptocurrency in Trovemat Kiosk step-by-step: 
 1. Client insert cash into Kiosk (like in any other vending machines)
@@ -29,7 +29,7 @@ Here are process of byuing cryptocurrency in Trovemat Kiosk step-by-step:
 1. Trovemat software prints receipt for the client with payment details (transferred amount, wallet, etc)
 1. Client receives SMS with transactionId (if available) of the performed operation, which can be checked in the corresponding blockchain
 
-## Can you describe the main flow-chart for a Trovemat software? How can you describe the flow of the money?
+## Can you describe the main flow-chart for a Trovemat? How can you describe the flow of the money?
 
 !["Scheme Trovemat flow of funds"](https://github.com/trovemat/docs/blob/master/Kiosk/en/img/Trovemat%20flow%20of%20funds.png)
 
@@ -41,7 +41,7 @@ Here are process of byuing cryptocurrency in Trovemat Kiosk step-by-step:
 1. Cryptocurrency exchange performs withdrawal command to destination wallet address
 1. Trovemat owner performs money collection procedure from Kiosk when cashbox is filled up with fiat money
 
-## Which cryptocurrency exchanges are supported by Trovemat software?
+## Which cryptocurrency exchanges are supported by Trovemat?
     
 The list of supported cryptocurrency exchanges: 
 - https://exmo.com
