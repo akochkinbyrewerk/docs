@@ -21,7 +21,7 @@ Folgende Software-Optionen sind für den Kiosk möglich:
     ```
     Touchscreen-Id (Eingabe ohne geschweifte Klammern) kann nach der Installation von Trovemat in der Liste der Geräte angezeigt werden.
 1. Das System neustarten, > Trovemat wird automatisch gestartet, wenn das System geladen wird.
-1. Trovemat-Software laut dem Dokument ["Anweisung zur Bedienung der Trovemat Kiosk-Software"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bde%5D.md) konfigurieren
+1. Trovemat-Software laut dem Dokument ["Anweisung zur Bedienung der Trovemat Kiosk-Software"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md) konfigurieren
 
 ## Anweisungen zur Installation der Trovemat Kiosk-Software auf Ubuntu 16.04 Server x64
 1. Installation der Trovemat-Software erfolgt im Betriebssystem Ubuntu 16.04 Server x64.
@@ -55,7 +55,7 @@ Folgende Software-Optionen sind für den Kiosk möglich:
 			sudo ./trovemat_online_installer_ubuntu.sh $USER https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz
     
 1. Nach der Installation von Trovemat wird der Computer neu gestartet. Nach dem Systemneuladen wird die Trovemat-Software automatisch gestartet.
-1. Trovemat-Software laut dem Dokument ["Anweisung zur Bedienung der Trovemat Kiosk-Software"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bru%5D.md) konfigurieren
+1. Trovemat-Software laut dem Dokument ["Anweisung zur Bedienung der Trovemat Kiosk-Software"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md) konfigurieren
 
 ## Typenliste der Befehle, die im Messenger TOX für Trovemat-Konfigurieren gesendet werden
 
@@ -65,7 +65,7 @@ Bevor einen Befehl zu senden, müssen Sie Ihre "tox id" in Trovemat hinzufügen:
 1. Klicken Sie auf die Schaltfläche "Administrator hinzufügen" - der erste hinzugefügte Administrator wird mit vollen Rechten erstellt, ohne Möglichkeit, ihn aus dem Service-Menü zu entfernen)
 1. Im Tox-Klient die Freundschaftsanfrage akzeptieren und warten bis Trovemat in Tox online ist.
 
-Nachfolgend finden Sie die wichtigsten Befehle für die Ersteinrichtung des Terminals (dieses Dokument enthält Testdaten für Einstellungen). Für ein genaueres Verständnis der Einstellungen verwenden Sie das Dokument ["Anweisung zur Bedienung der Trovemat Kiosk-Software"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bru%5D.md) Anführungszeichen, die in den Befehlen verwendet werden können - alle Arten der Anführungszeichen, die sowohl für Mobiltelefonen als auch für Desktop-Betriebssysteme üblich sind (einschließlich Apostrophen).
+Nachfolgend finden Sie die wichtigsten Befehle für die Ersteinrichtung des Terminals (dieses Dokument enthält Testdaten für Einstellungen). Für ein genaueres Verständnis der Einstellungen verwenden Sie das Dokument ["Anweisung zur Bedienung der Trovemat Kiosk-Software"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md) Anführungszeichen, die in den Befehlen verwendet werden können - alle Arten der Anführungszeichen, die sowohl für Mobiltelefonen als auch für Desktop-Betriebssysteme üblich sind (einschließlich Apostrophen).
 
     !!! ACHTUNG  
     !!! Nachdem alle Einstellungen fertig sind, soll der Kiosk mit dem folgenden Befehl neugestartet werden: service restart
@@ -85,7 +85,7 @@ In diesen Befehlen werden die Daten in spitzen Klammern angegeben, statt deren b
     1. Passwort:
 
 			settings set -secure "crypto.jetcrypto_wallet_password" "<PASSWORT DER GELDBÖRSE JetCrypto Wallet>"
-1. Die Schlüssel der gewählten Börse speichern (als Beispiel werden die Parameter für Poloniex Börse verwendet - für Einstellung anderer Börsen siehe ["Anweisung zur Bedienung der Trovemat Kiosk-Software"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bru%5D.md#Einstellung-der-Interaktion-mit-Börsen)):
+1. Die Schlüssel der gewählten Börse speichern (als Beispiel werden die Parameter für Poloniex Börse verwendet - für Einstellung anderer Börsen siehe ["Anweisung zur Bedienung der Trovemat Kiosk-Software"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md#settings-for-crytpocurrency-exchange)):
     1. Offener Schlüssel:
     
 			settings set "config.payments.common_params.<NAME DES PARAMETERS, WO DER OFFENE SCHLÜSSEL DER GEWÄHLTEN BÖRSE GESPEICHERT IST>" "<OFFENER SCHLÜSSEL DER GEWÄHLTEN BÖRSE>"
