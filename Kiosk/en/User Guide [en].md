@@ -218,6 +218,11 @@ Example of menu.xml for menu, which contains 8 operators on the main page:
 ## Operators list (operators.xml)
 
 * operator - Operator. Describes payments scenario for that operator. Name of this tag can be in any format, according to XML rules.
+	* name - name of the operator, used for loading rate search for paper-wallet generating algorithm
+	* long - long name of the crypto-currency, some data sources using this for loading rate
+	* short - crypto-currency code, some data sources using this for loading rate
+	* image - name of the file with operator logo
+	* source_currency - optional attribute, you can set here code of source crypto-currency, which is used as a source for exchange operation into destination crypto-currency. E.g., if Trovemat's owner have only BTC on the deposit, and current operator tag describes ETH crypto-currency, than Trovemat owner can set BTC in this attribute's value. In that case Trovemat first convert deposited fiat amount into BTC, than convert that amount of BTC into ETH, than withdrawal that ETH to client's address.
 	* step - Step of the scenario.
 		* type - attribute - Type of the step. Required attribute. No defauде value. Possible values:
 			- **"data_entry"** - User enters some payment details on that step (e.g. wallet address).
