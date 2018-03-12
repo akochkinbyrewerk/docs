@@ -43,18 +43,9 @@
     
 	1. Установка лицензионной версии ПО Trovemat
         
-        Для установки лицензионной версии необходимо получить URL, по которому будет доступна лицензионная версия. После получения данного URL установка лицензионной версии выполняется следующими командами в терминале:
-
-			wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
-			chmod +x trovemat_online_installer_ubuntu.sh
-			sudo ./trovemat_online_installer_ubuntu.sh $USER СЮДА_НЕОБХОДИМО_ВВЕСТИ_URL_ПОЛУЧЕННЫЙ_ПОСЛЕ_ОПЛАТЫ_СЧЁТА_ЗА_ПО_TROVEMAT
-
-			Пример команды для установки лицензионной версии с URL https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz:
-			wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
-			chmod +x trovemat_online_installer_ubuntu.sh
-			sudo ./trovemat_online_installer_ubuntu.sh $USER https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz
+        Для установки лицензионной версии необходимо сначала [установить DEMO-версию Trovemat](https://github.com/trovemat/docs/blob/master/Kiosk/ru/Install%20%5Bru%5D.md#Инструкция-по-установке-ПО-киоска-Trovemat-на-ОС-Ubuntu-16.04-Server-x64), затем сохранить лицензионные логин и пароль от учетной записи Jetcrypto Wallet и перезагрузить Trovemat (см. [инструкцию по настройке терминала](https://github.com/trovemat/docs/blob/master/Kiosk/ru/Install%20%5Bru%5D.md#Типовой-список-команд,-отправляемых-в-мессенджере-TOX-для-настройки-Trovemat)).
     
-1. По завершении установки Trovemat компьютер будет перезапущен. После перезагрузки системы Trovemat запустится автоматически.
+1. Trovemat автоматически обновится до стабильной полной версии.
 1. Настроить ПО Trovemat в соответствии с документом ["Инструкция по использованию ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/Kiosk/ru/User%20Guide%20%5Bru%5D.md)
 
 ## Типовой список команд, отправляемых в мессенджере TOX для настройки Trovemat
