@@ -55,7 +55,7 @@
 			sudo ./trovemat_online_installer_ubuntu.sh $USER https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz
     
 1. По завершении установки Trovemat компьютер будет перезапущен. После перезагрузки системы Trovemat запустится автоматически.
-1. Настроить ПО Trovemat в соответствии с документом ["Инструкция по использованию ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bru%5D.md)
+1. Настроить ПО Trovemat в соответствии с документом ["Инструкция по использованию ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/Kiosk/ru/User%20Guide%20%5Bru%5D.md)
 
 ## Типовой список команд, отправляемых в мессенджере TOX для настройки Trovemat
 
