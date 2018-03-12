@@ -29,19 +29,19 @@
     1. Установка ОС производится с настройками по умолчанию.
 1. Установить Trovemat (ввести команду в терминале)  
     
-    1. Установка демонстрационной версии ПО Trovemat
-    > !!! ВНИМАНИЕ  
-    > !!! ДАННАЯ КОМАНДА УСТАНАВЛИВАЕТ ДЕМОНСТРАЦИОННУЮ ВЕРСИЮ ПО КИОСКА  
-    > !!! ДЛЯ ПОЛУЧЕНИЯ ЛИЦЕНЗИОННОЙ ВЕРСИИ БЕЗ ОГРАНИЧЕНИЙ  
-    > !!! ОБРАЩАЙТЕСЬ НА sales@trovemat.com  
-  
-    ``` SHELL 
-    wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
-    chmod +x trovemat_online_installer_ubuntu.sh
-    sudo ./trovemat_online_installer_ubuntu.sh $USER
-    ```
+	1. Установка демонстрационной версии ПО Trovemat
+	    > !!! ВНИМАНИЕ  
+	    > !!! ДАННАЯ КОМАНДА УСТАНАВЛИВАЕТ ДЕМОНСТРАЦИОННУЮ ВЕРСИЮ ПО КИОСКА  
+	    > !!! ДЛЯ ПОЛУЧЕНИЯ ЛИЦЕНЗИОННОЙ ВЕРСИИ БЕЗ ОГРАНИЧЕНИЙ  
+	    > !!! ОБРАЩАЙТЕСЬ НА sales@trovemat.com  
+
+	    ``` SHELL 
+	    wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
+	    chmod +x trovemat_online_installer_ubuntu.sh
+	    sudo ./trovemat_online_installer_ubuntu.sh $USER
+	    ```
     
-    1. Установка лицензионной версии ПО Trovemat
+	1. Установка лицензионной версии ПО Trovemat
         
         Для установки лицензионной версии необходимо получить URL, по которому будет доступна лицензионная версия. После получения данного URL установка лицензионной версии выполняется следующими командами в терминале:
 
