@@ -28,32 +28,27 @@ There are 2 possible options for running Trovemat software:
     1. Make sure that you check "OpenSSH Server" option while installing OS.
     1. Use default settings while installing OS.
 1. Install Trovemat software (by running following command in the OS command shell)  
+
+	1. Install demo version of the Trovemat software
     
-    > !!! ATTENTION  
-    > !!! CURRENT COMMAND INSTALLS DEMO-VERSION OF THE TROVEMAT SOFTWARE  
-    > !!! FOR THE UNLIMITED VERSION  
-    > !!! EMAIL TO sales@trovemat.com  
-  
-    ``` SHELL 
-    wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
-    chmod +x trovemat_online_installer_ubuntu.sh
-    sudo ./trovemat_online_installer_ubuntu.sh $USER
-    ```
+		> !!! ATTENTION  
+		> !!! CURRENT COMMAND INSTALLS DEMO-VERSION OF THE TROVEMAT SOFTWARE  
+		> !!! FOR THE UNLIMITED VERSION  
+		> !!! EMAIL TO sales@trovemat.com  
+
+		``` SHELL 
+		wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
+		chmod +x trovemat_online_installer_ubuntu.sh
+		sudo ./trovemat_online_installer_ubuntu.sh $USER
+		```
     
-    1. Installing licensed version of the Trovemat Software
+    1. Install license version of the Trovemat software
+		
+		You need to install demo version of the Trovemat software, then you have to save license login and password from Jetcrypto Wallet account and restart Trovemat software (see ).
         
-        For installing license version of the Trovemat software you need to have an URL for downloading this version. After getting this URL you can run following commands to install that license version:
-
-			wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
-			chmod +x trovemat_online_installer_ubuntu.sh
-			sudo ./trovemat_online_installer_ubuntu.sh $USER ENTER_URL_OF_THE_LICENSED_VERSION_OF_THE_TROVEMAT_SOFTWARE
-
-			Example with URL https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz:
-			wget https://trovemat.com/trovemat_online_installer_ubuntu.sh
-			chmod +x trovemat_online_installer_ubuntu.sh
-			sudo ./trovemat_online_installer_ubuntu.sh $USER https://files.bytewerk.com/files/11111111111/trovemat-latest.tar.xz
 
 1. When install is complete, computer will reboot. After system start Trovemat software will start automatically.
+1. Trovemat software will automatically updates to latest version.
 1. Setup Trovemat software according to ["Trovemat software User Guide"](https://github.com/trovemat/docs/blob/master/Kiosk/en/User%20Guide%20%5Ben%5D.md)
 
 ## Typical commands, used for Trovemat software set-up from TOX messenger
