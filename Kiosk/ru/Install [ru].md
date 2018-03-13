@@ -21,7 +21,7 @@
     ```
     id Тачскрина (вводится без фигурных скобок) можно посмотреть после установки Trovemat в списке устройств.
 1. Перезагрузить систему, > Trovemat запустится автоматически при загрузке системы.
-1. Настроить ПО Trovemat в соответствии с документом ["Инструкция по использованию ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/Kiosk/User%20Guide%20%5Bru%5D.md)
+1. Настроить ПО Trovemat в соответствии с документом ["Инструкция по использованию ПО киоска Trovemat"](https://github.com/trovemat/docs/blob/master/Kiosk/ru/User%20Guide%20%5Bru%5D.md)
 
 ## Инструкция по установке ПО киоска Trovemat на ОС Ubuntu 16.04 Server x64
 1. Установка Trovemat производится на операционной системе Ubuntu 16.04 Server x64
