@@ -44,8 +44,7 @@ There are 2 possible options for running Trovemat software:
     
     1. Install license version of the Trovemat software
 		
-		You need to install demo version of the Trovemat software, then you have to save license login and password from Jetcrypto Wallet account and restart Trovemat software (see ).
-        
+		You need to install demo version of the Trovemat software, then you have to save login and password from Jetcrypto Wallet account with active Trovemat license and restart Trovemat software (see [here](#typical-commands-used-for-trovemat-software-set-up-from-tox-messenger)).
 
 1. When install is complete, computer will reboot. After system start Trovemat software will start automatically.
 1. Trovemat software will automatically updates to latest version.
