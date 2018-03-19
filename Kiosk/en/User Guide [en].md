@@ -22,13 +22,14 @@ Example:
 		<point_id>1</point_id>
 		<extended_logging>false</extended_logging>
 		<point_name>Trovemat kiosk #1</point_name>
+		<auto_update>true</auto_update>
 	</parameters>
 	<gateways>
-		<jetcrypto_wallet type="trovemat" url="beta.jetcrypto.com" username="demo" password="crypto.jetcrypto_wallet_password" check="true" pay="true" tasks="3" tasks_interval="300" />
+		<jetcrypto_wallet type="trovemat" url="api.jetcrypto.com" username="demo" password="crypto.jetcrypto_wallet_password" check="true" pay="true" tasks="3" tasks_interval="300" />
 		<tox_messenger type="tox_text" >
-			<friends>
-				<users />
-			</friends>
+			<users>
+				<oleg tox_id="0C91345234446F73B9E55049BF141407841A8A53F70985E0BEDDADCEF1BDC52C3DA1A15BE693" tasks="3" info_task="2" info_state="true" info_full_state="false" info_factor="false" info_bill="false" info_payment="true"/>
+			</users>
 			<nodes>				
 				<node_1 ip="144.76.60.215" port="33445" tox_id="04119E835DF3E78BACF0F84235B300546AF8B936F035185E2A8E9E0A67C8924F" />
 				<node_3 ip="128.199.199.197" port="33445" tox_id="B05C8869DBB4EDDD308F43C1A974A20A725A36EACCA123862FDE9945BF9D3E09" />
@@ -52,7 +53,7 @@ Example:
 		<menu vending="true" >
 			<limit_max USD="3000" />
 		</menu>
-		<inactivity_timer data_entry="120" message="120" money_entry="120" />
+		<inactivity_timer data_entry="120" message="120" money_entry="120" service_menu="120" />
 	</interface>
     <terminal>
         <init>
@@ -61,9 +62,9 @@ Example:
         </init>
     </terminal>
     <peripherals>
-        <barcodereader model="" port="" baudrate="9600" extended_logging="config.parameters.extended_logging" show_errors="0" />
         <printer model="" port="" baudrate="9600" extended_logging="config.parameters.extended_logging" show_errors="0" charset_code_table="0" />
         <validator model="" port="" baudrate="9600" extended_logging="config.parameters.extended_logging" show_errors="0" />
+	<camera model="" show_errors="0" />
     </peripherals>
     <point_info>
 		<dealer_name name="" value="JetCrypto" />
@@ -87,6 +88,7 @@ If parameter value begins with "config." - Trovemat software reads this value as
 		- **"true"** - turned on.
     * point_id - Identification number of this Kiosk installation. Default value - 0.
     * point_name - Symbolic name of this Kiosk installation for displaying in messenger as a contact name. If this attribute not present or empty - name of the contact would be "Trovemat kiosk #<VALUE FROM ATTRIBUTE point_id>".
+    * auto_update - enable auto update, default value - true. If auto update disable it possible to update kiosk by tox command "service update".
 * payments - Default parameters for payments. Can be redefined for each operator in "money_entry" step inside operators.xml file. Parameters full description can be found at "[Operators](#operators-list-operatorsxml)" section.
     * gateway - Default value - "" - Gateway name.
     * currency - Default value - "USD".
@@ -152,6 +154,11 @@ If parameter value begins with "config." - Trovemat software reads this value as
     * Following attributes must be specified for each cassette in dispenser (cassette number starts from 0):
     	* cassette_N - nominal of N-nth cassette, for example cassette_0="100 USD".
     	* default_capacity_N - banknotes count by default for N-nth cassette (admin can change that value during service procedures), for example: default_capacity_0="1000".
+	
+* camera - Supported models (stored in "model" attribute):
+    - **"webcam"** - any webcam is compatible with your operating system.
+    - **"test_camera"** - test device emulated by Trovemat software for debug purpose.
+    * test_code - qr-code value scanned by test camera (see "Device emulation"). Default value - 1Test18BrEkPVue1J9FXBRaHRavmzAiek.	
 		
 * point_info - In that section you can setup unlimited parameters with any name. These parameters will be interpreted as fields during client session. These fields can be used in receipts and in requests to gateways. "Id" of the field has name like _INFO_*, where * - name of the field written in uppercase letters. Name and value of the field can be setup by "name" and "value" attributes. Example: <dealer_name name="Dealer" value="Trovemat services seller, Gmbh" /> will be translated into field with id="_INFO_DEALER_NAME", name="Dealer" и value="Trovemat services seller, Gmbh".
 
@@ -429,6 +436,14 @@ For demo version of a Trovemat software it is possible to use software-emulated 
         * F10 - Inserted 500 minimum unit for chosen currency
         * F11 - Inserted 1000 minimum unit for chosen currency
         * F12 - Inserted 5000 minimum unit for chosen currency
+	
+* Camera.
+    * model - "test_camera"
+    * key - "F10"
+    * events:	
+        * F1 - device is offline
+        * F2 - device online
+        * F3 - scanned test qr-code.	
 		
 * Printer - Prints receipts into text files (temp/receipt_*.txt)
     * model - "test_printer"
