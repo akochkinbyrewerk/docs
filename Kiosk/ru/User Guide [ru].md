@@ -19,16 +19,17 @@
 ``` XML
 <config>
     <parameters>
+		<point_name>Trovemat kiosk #1</point_name>
 		<point_id>1</point_id>
 		<extended_logging>false</extended_logging>
-		<point_name>Trovemat kiosk #1</point_name>
+		<auto_update>true</auto_update>
 	</parameters>
 	<gateways>
-		<jetcrypto_wallet type="trovemat" url="beta.jetcrypto.com" username="demo" password="crypto.jetcrypto_wallet_password" check="true" pay="true" tasks="3" tasks_interval="300" />
+		<jetcrypto_wallet type="trovemat" url="api.jetcrypto.com" username="demo" password="crypto.jetcrypto_wallet_password" check="true" pay="true" tasks="3" tasks_interval="300" />
 		<tox_messenger type="tox_text" >
-			<friends>
-				<users />
-			</friends>
+			<users>
+				<oleg tox_id="0C91345234446F73B9E55049BF141407841A8A53F70985E0BEDDADCEF1BDC52C3DA1A15BE693" tasks="3" info_task="2" info_state="true" info_full_state="false" info_factor="false" info_bill="false" info_payment="true"/>
+			</users>
 			<nodes>				
 				<node_1 ip="144.76.60.215" port="33445" tox_id="04119E835DF3E78BACF0F84235B300546AF8B936F035185E2A8E9E0A67C8924F" />
 				<node_3 ip="128.199.199.197" port="33445" tox_id="B05C8869DBB4EDDD308F43C1A974A20A725A36EACCA123862FDE9945BF9D3E09" />
@@ -52,7 +53,7 @@
 		<menu vending="true" >
 			<limit_max USD="3000" />
 		</menu>
-		<inactivity_timer data_entry="120" message="120" money_entry="120" />
+		<inactivity_timer data_entry="120" message="120" money_entry="120" service_menu="120" />
 	</interface>
     <terminal>
         <init>
@@ -61,9 +62,9 @@
         </init>
     </terminal>
     <peripherals>
-        <barcodereader model="" port="" baudrate="9600" extended_logging="config.parameters.extended_logging" show_errors="0" />
         <printer model="" port="" baudrate="9600" extended_logging="config.parameters.extended_logging" show_errors="0" charset_code_table="0" />
         <validator model="" port="" baudrate="9600" extended_logging="config.parameters.extended_logging" show_errors="0" />
+	<camera model="" show_errors="0" />
     </peripherals>
     <point_info>
 		<dealer_name name="" value="JetCrypto" />
@@ -87,6 +88,7 @@
 		- **"true"** - включено.
     * point_id - номер точки. Значение по умолчанию - 0.
     * point_name - наименование точки для отображения в мессенджере в качестве имени контакта. Если данный атрибут не указан - наименование контакта будет "Trovemat kiosk #<ЗНАЧЕНИЕ ИЗ АТРИБУТА point_id>".
+    * auto_update - включить автоматическое обновление, значение по умолчанию - true. Если автоматическое обновление отключенно обновить ПО киоска можно tox-командой "service update".
 * payments - параметры платежей по умолчанию. Могут быть переопределены для каждого оператора на шаге "money_entry" в operators.xml. Описание параметров в разделе "Операторы".
     * gateway - значение по умолчанию - "" - наименование шлюза
     * currency - значение по умолчанию - "USD".
@@ -152,7 +154,12 @@
     * Следующих атрибутов необходимо задать столько же, сколько кассет содержит диспенсер:
     * cassette_0 - номинал купюр 0-ой кассеты, например "100 USD".
     * default_capacity_0 - количество купюр по умолчанию для 0-ой кассеты (при инкассации можно изменить это значение), например "1000".
-		
+    
+* camera - Поддерживаемые модели (указывается в атрибуте model):
+    - **"webcam"** - любая веб-камера совместимая с выбранной операционной системой.
+    - **"test_camera"** - тестовая программно-эмулируемая камера для отладочных целей.
+    * test_code - значение отсканированного тестовой камерой qr-кода. Значение по умолчанию - 1Test18BrEkPVue1J9FXBRaHRavmzAiek.
+ 	
 * point_info - В данном разделе можно задать неограниченное количество системных полей с любыми именами. Эти поля можно использовать при печати чеков и запросах к шлюзам. "Id" поля задается вида _INFO_*, где * - имя поля заглавными буквами. Имя и значение могут быть заданы атрибутами "name" и "value". Пример: <dealer_name name="Дилер" value="Рога и Копыта" /> будет преобразовано в системное поле с id="_INFO_DEALER_NAME", name="Дилер" и value="Рога и Копыта".
 
 * gateways В данном разделе можно задать неограниченное количество тегов, описывающих подключение к различным серверам.
@@ -434,6 +441,14 @@ id="SUM" name="Сумма" value="1234567890"
         * F10 - внести 500 у.е. (5 рублей для RUB)
         * F11 - внести 1000 у.е. (10 рублей для RUB)
         * F12 - внести 5000 у.е. (50 рублей для RUB)
+	
+* Camera.
+    * model - "test_camera"
+    * клавиша - "F10"
+    * события:	
+        * F1 - устройство вышло из строя.
+        * F2 - устройство работает.
+        * F3 - отсканирован тестовый qr-код.
 		
 * Printer - Печатает чеки в файлы (test_check_*.txt)
     * model - "test_printer"
@@ -449,7 +464,7 @@ id="SUM" name="Сумма" value="1234567890"
         * F1 - устройство вышло из строя.
         * F2 - устройство работает.
         * F3 - кассета убрана.
-        * F4 - выдать колличество денег равное номиналу банкнот 0-ой кассеты.	
+        * F4 - выдать колличество денег равное номиналу банкнот 0-ой кассеты.
 
 ## Сервисные сочетания клавиш
 * F1 + F1 - закрытие ПО Trovemat для доступа к системному меню.
