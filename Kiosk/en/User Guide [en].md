@@ -22,7 +22,7 @@ Example:
 		<point_id>1</point_id>
 		<extended_logging>false</extended_logging>
 		<point_name>Trovemat kiosk #1</point_name>
-		<auto_update>true</auto_update>
+		<auto_update value="true" soft_update="true" time_to_update="00:00:00" interval_to_update="23:59:59" />
 	</parameters>
 	<gateways>
 		<jetcrypto_wallet type="trovemat" url="api.jetcrypto.com" username="demo" password="crypto.jetcrypto_wallet_password" check="true" pay="true" tasks="3" tasks_interval="300" />
@@ -89,6 +89,10 @@ If parameter value begins with "config." - Trovemat software reads this value as
     * point_id - Identification number of this Kiosk installation. Default value - 0.
     * point_name - Symbolic name of this Kiosk installation for displaying in messenger as a contact name. If this attribute not present or empty - name of the contact would be "Trovemat kiosk #<VALUE FROM ATTRIBUTE point_id>".
     * auto_update - enable auto update, default value - true. If auto update disable it possible to update kiosk by tox command "service update".
+		- value - default value "true" - stores the tag value. 
+		- soft_update - default value "true" - after downloading the update files, the program will not close until the user's last activity has passed 60 seconds. The similar tox command: "service update -soft". 
+		- time_to_update - default value "00:00:00". 
+		- interval_to_update - default value "23:59:59". This attributes ("time_to_update" and "interval_to_update") form the time interval |time_to_update, interval_to_update| - in which program tries to update.
 * payments - Default parameters for payments. Can be redefined for each operator in "money_entry" step inside operators.xml file. Parameters full description can be found at "[Operators](#operators-list-operatorsxml)" section.
     * gateway - Default value - "" - Gateway name.
     * currency - Default value - "USD".
