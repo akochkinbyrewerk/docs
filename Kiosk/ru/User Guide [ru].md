@@ -22,7 +22,7 @@
 		<point_name>Trovemat kiosk #1</point_name>
 		<point_id>1</point_id>
 		<extended_logging>false</extended_logging>
-		<auto_update>true</auto_update>
+		<auto_update value="true" soft_update="true" time_to_update="00:00:00" interval_to_update="23:59:59" />
 	</parameters>
 	<gateways>
 		<jetcrypto_wallet type="trovemat" url="api.jetcrypto.com" username="demo" password="crypto.jetcrypto_wallet_password" check="true" pay="true" tasks="3" tasks_interval="300" />
@@ -89,6 +89,10 @@
     * point_id - номер точки. Значение по умолчанию - 0.
     * point_name - наименование точки для отображения в мессенджере в качестве имени контакта. Если данный атрибут не указан - наименование контакта будет "Trovemat kiosk #<ЗНАЧЕНИЕ ИЗ АТРИБУТА point_id>".
     * auto_update - включить автоматическое обновление, значение по умолчанию - true. Если автоматическое обновление отключенно обновить ПО киоска можно tox-командой "service update".
+		- value - значение по умолчанию "true" - флаг, хранящий значение тега. 
+		- soft_update - значение по умолчанию "true" - флаг, отвечающий за "мягкое" обновление - ожидание программы простоя киоска без действий пользователя минимум 60 сек времени. Аналог для tox-команды - флаг "soft", пример: "service update -soft". 
+		- time_to_update - значение по умолчанию "00:00:00". 
+		- interval_to_update - значение по умолчанию "23:59:59". Флаги "time_to_update" и "interval_to_update" формируют интервал |time_to_update, interval_to_update| - в который программа будет пытаться обновиться.
 * payments - параметры платежей по умолчанию. Могут быть переопределены для каждого оператора на шаге "money_entry" в operators.xml. Описание параметров в разделе "Операторы".
     * gateway - значение по умолчанию - "" - наименование шлюза
     * currency - значение по умолчанию - "USD".
