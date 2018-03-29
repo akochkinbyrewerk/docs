@@ -88,8 +88,8 @@ If parameter value begins with "config." - Trovemat software reads this value as
 		- **"true"** - turned on.
     * point_id - Identification number of this Kiosk installation. Default value - 0.
     * point_name - Symbolic name of this Kiosk installation for displaying in messenger as a contact name. If this attribute not present or empty - name of the contact would be "Trovemat kiosk #<VALUE FROM ATTRIBUTE point_id>".
-    * auto_update - enable auto update, default value - true. If auto update disable it possible to update kiosk by tox command "service update".
-		- value - default value "true" - stores the tag value. 
+    * auto_update - auto update. You can also update kiosk by tox command "service update".
+		- value - enable auto update, default value - "true". 
 		- soft_update - default value "true" - after downloading the update files, the program will not close until the user's last activity has passed 60 seconds. The similar tox command: "service update -soft". 
 		- time_to_update - default value "00:00:00". 
 		- interval_to_update - default value "23:59:59". This attributes ("time_to_update" and "interval_to_update") form the time interval |time_to_update, interval_to_update| - in which program tries to update.
